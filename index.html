@@ -1,0 +1,1157 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Кибермол — молодёжное движение | Здоровая молодёжь — сильная Россия</title>
+<meta name="description" content="«Кибермол» — молодёжное движение из Москвы: бокс и спорт, волонтёрство, патриотические проекты, музыка. 19+ наград, 34 спортсмена-разрядника. Здоровая молодёжь — сильная Россия." />
+<meta name="theme-color" content="#FDFDFB" />
+<link rel="canonical" href="https://cybermol.ru/" />
+<link rel="icon" type="image/png" href="assets/logo-mark.png" />
+<link rel="apple-touch-icon" href="assets/logo-mark.png" />
+
+<!-- Open Graph / соцсети -->
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="Кибермол" />
+<meta property="og:title" content="Кибермол — здоровая молодёжь, сильная Россия" />
+<meta property="og:description" content="Молодёжное движение из Москвы: бокс, волонтёрство, патриотические проекты и музыка. Присоединяйтесь или поддержите." />
+<meta property="og:url" content="https://cybermol.ru/" />
+<meta property="og:image" content="https://cybermol.ru/assets/event-team.jpg" />
+<meta name="twitter:card" content="summary_large_image" />
+
+<!--
+  ┌────────────────────────────────────────────────────────────────────────┐
+  │  САЙТ ДВИЖЕНИЯ «КИБЕРМОЛ» · светлая версия (v3)                        │
+  │  Что заполнить позже (ищите слово TODO в скрипте внизу):               │
+  │   1) VK_GROUP_ID + VK_GROUP_URL — группа ВКонтакте («Мероприятия»).    │
+  │   2) MAX_URL — ссылка на сообщество в MAX.                             │
+  │   3) DONATE_URL — ссылка для пожертвований («Поддержать»).             │
+  │   4) Документы — атрибут data-file у карточек в секции «Документы».    │
+  │  Цвета бренда меняются в одном месте — :root ниже.                     │
+  └────────────────────────────────────────────────────────────────────────┘
+-->
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Inter+Tight:wght@700;800;900&display=swap" rel="stylesheet" />
+<link rel="preload" as="image" href="assets/event-team.jpg" fetchpriority="high" />
+<script src="https://vk.com/js/api/openapi.js?169" defer></script>
+
+<!-- Разметка организации для поисковиков -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "NGO",
+  "name": "АНО ФРМ «Кибермол»",
+  "alternateName": "Кибермол",
+  "slogan": "Здоровая молодёжь — сильная Россия",
+  "foundingDate": "2022",
+  "email": "frmcybermol@yandex.ru",
+  "telephone": "+7 926 412-90-10",
+  "url": "https://cybermol.ru/",
+  "logo": "https://cybermol.ru/assets/logo-mark.png",
+  "address": {
+    "@type": "PostalAddress",
+    "addressCountry": "RU",
+    "addressLocality": "Москва",
+    "streetAddress": "Капотня, 5-й квартал, д. 26"
+  }
+}
+</script>
+
+<style>
+  /* ══════════════ 1. ДИЗАЙН-СИСТЕМА (светлая) ══════════════ */
+  :root{
+    /* Цвета бренда — меняйте здесь */
+    --red:      #D92030;
+    --red-deep: #B3121F;   /* hover */
+    --rose:     rgba(217,32,48,.07);
+    /* Светлая сцена */
+    --bg:       #FDFDFB;   /* фон страницы */
+    --bg-2:     #F6F6F2;   /* чередование секций */
+    --panel:    #FFFFFF;   /* карточки */
+    --ink:      #16171B;   /* основной текст */
+    --mut:      #5D6167;
+    --faint:    #989CA4;
+    --line:     rgba(22,23,27,.08);
+    --line-2:   rgba(22,23,27,.15);
+    --shadow-sm:0 1px 2px rgba(22,23,27,.05), 0 4px 14px rgba(22,23,27,.04);
+    --shadow:   0 24px 60px rgba(22,23,27,.12);
+    /* Геометрия */
+    --maxw:     1200px;
+    --r:        22px;
+    --font-d:   'Inter Tight','Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
+    --font-b:   'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
+    --ease:     cubic-bezier(.2,.7,.2,1);
+  }
+  *{ box-sizing:border-box; margin:0; padding:0; }
+  html{ scroll-behavior:smooth; }
+  body{
+    font-family:var(--font-b); background:var(--bg); color:var(--ink);
+    line-height:1.62; overflow-x:clip;
+    -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility;
+  }
+  ::selection{ background:var(--red); color:#fff; }
+  a{ color:inherit; text-decoration:none; }
+  img{ display:block; max-width:100%; }
+  .wrap{ max-width:var(--maxw); margin:0 auto; padding:0 28px; }
+  section{ padding:110px 0; position:relative; }
+  section[id]{ scroll-margin-top:86px; }
+
+  h1,h2,h3{ font-family:var(--font-d); line-height:1.08; letter-spacing:-.022em; font-weight:800; }
+  h2{ font-size:clamp(30px,4.2vw,48px); }
+  h3{ font-size:20px; letter-spacing:-.012em; }
+  p{ color:var(--mut); }
+  .lead{ font-size:clamp(16px,1.5vw,18.5px); max-width:58ch; }
+
+  .eyebrow{ display:flex; align-items:center; gap:12px; font-size:12px; font-weight:700;
+    letter-spacing:.2em; text-transform:uppercase; color:var(--faint); margin-bottom:18px; }
+  .eyebrow b{ color:var(--red); font-weight:800; }
+  .eyebrow::before{ content:''; width:32px; height:2px; border-radius:2px; background:var(--red); flex:none; }
+  .sec-head{ max-width:70ch; margin-bottom:50px; }
+
+  /* Тонкая полоса-прогресс прокрутки */
+  .scrollbar{ position:fixed; top:0; left:0; height:2px; width:0; z-index:120; background:var(--red); }
+
+  /* Кнопки */
+  .btn{ display:inline-flex; align-items:center; justify-content:center; gap:10px; height:54px; padding:0 30px;
+    border-radius:999px; font-weight:600; font-size:15px; cursor:pointer; border:1px solid transparent;
+    transition:transform .16s var(--ease), box-shadow .25s ease, background .2s ease, border-color .2s, color .2s;
+    white-space:nowrap; will-change:transform; }
+  .btn:active{ transform:scale(.97); }
+  .btn-red{ background:var(--red); color:#fff; box-shadow:0 10px 26px rgba(217,32,48,.22); }
+  .btn-red:hover{ background:var(--red-deep); transform:translateY(-2px); box-shadow:0 16px 36px rgba(217,32,48,.3); }
+  .btn-ghost{ background:#fff; color:var(--ink); border-color:var(--line-2); }
+  .btn-ghost:hover{ border-color:rgba(22,23,27,.3); transform:translateY(-2px); box-shadow:var(--shadow-sm); }
+  .btn-ink{ background:var(--ink); color:#fff; }
+  .btn-ink:hover{ background:#000; transform:translateY(-2px); box-shadow:var(--shadow); }
+
+  :focus-visible{ outline:2px solid var(--red); outline-offset:3px; border-radius:6px; }
+
+  /* ══════════════ 2. ЗАСТАВКА (мягкая, светлая) ══════════════ */
+  #intro{ position:fixed; inset:0; z-index:300; background:var(--bg); display:grid; place-items:center; cursor:pointer; }
+  #intro.gone{ animation:introOut .6s var(--ease) forwards; }
+  #intro .in-wrap{ text-align:center; padding:24px; }
+  #intro img{ width:min(140px,36vw); margin:0 auto; animation:introLogo 1s var(--ease) both; }
+  #intro .in-name{ margin-top:22px; font-family:var(--font-d); font-weight:900; letter-spacing:.14em;
+    font-size:clamp(17px,4.2vw,22px); opacity:0; animation:introUp .6s ease .4s forwards; }
+  #intro .in-slogan{ margin-top:8px; color:var(--mut); font-size:clamp(14px,3.4vw,16px); font-weight:500;
+    opacity:0; animation:introUp .6s ease .6s forwards; }
+  #intro .in-slogan b{ color:var(--red); font-weight:700; }
+  #intro .in-line{ width:0; height:2px; background:var(--red); margin:20px auto 0; border-radius:2px; animation:introLine .9s var(--ease) .75s forwards; }
+  @keyframes introLogo{ 0%{ opacity:0; transform:scale(.72); } 100%{ opacity:1; transform:scale(1); } }
+  @keyframes introUp{ from{ opacity:0; transform:translateY(12px); } to{ opacity:1; transform:none; } }
+  @keyframes introLine{ to{ width:min(200px,48vw); } }
+  @keyframes introOut{ to{ opacity:0; visibility:hidden; } }
+
+  /* ══════════════ 3. ШАПКА И НАВИГАЦИЯ ══════════════ */
+  header{ position:fixed; top:0; left:0; right:0; z-index:100; background:rgba(253,253,251,.75);
+    backdrop-filter:saturate(160%) blur(16px); -webkit-backdrop-filter:saturate(160%) blur(16px);
+    border-bottom:1px solid transparent; transition:border-color .3s ease, box-shadow .3s ease; }
+  header.scrolled{ border-color:var(--line); box-shadow:0 6px 24px rgba(22,23,27,.05); }
+  .nav{ display:flex; align-items:center; justify-content:space-between; gap:20px; height:78px; transition:height .3s var(--ease); }
+  header.scrolled .nav{ height:64px; }
+  .logo{ display:flex; align-items:center; gap:12px; }
+  .logo img{ height:40px; width:auto; transition:height .3s var(--ease); }
+  header.scrolled .logo img{ height:34px; }
+  .logo-txt{ display:flex; flex-direction:column; line-height:1; font-family:var(--font-d); font-weight:900; letter-spacing:.04em; font-size:19px; }
+  .logo-txt small{ font-family:var(--font-b); font-size:9px; font-weight:600; letter-spacing:.07em; color:var(--faint); margin-top:4px; white-space:nowrap; }
+  .menu{ display:flex; align-items:center; gap:28px; }
+  .menu > a{ position:relative; font-size:14px; font-weight:600; color:var(--mut); padding:6px 0; transition:color .2s; }
+  .menu > a::after{ content:''; position:absolute; left:0; right:0; bottom:0; height:2px; background:var(--red);
+    transform:scaleX(0); transform-origin:left; transition:transform .3s var(--ease); border-radius:2px; }
+  .menu > a:hover{ color:var(--ink); }
+  .menu > a.active{ color:var(--ink); }
+  .menu > a.active::after{ transform:scaleX(1); }
+  .nav-cta{ display:flex; align-items:center; gap:14px; }
+  .nav-cta .btn{ height:44px; padding:0 22px; font-size:14px; }
+  .burger{ display:none; width:46px; height:46px; border:1px solid var(--line-2); border-radius:12px;
+    background:#fff; cursor:pointer; position:relative; z-index:210; }
+  .burger i,.burger i::before,.burger i::after{ content:''; position:absolute; left:13px; width:19px; height:2px;
+    background:var(--ink); border-radius:2px; transition:.28s var(--ease); }
+  .burger i{ top:22px; } .burger i::before{ left:0; top:-6px; } .burger i::after{ left:0; top:6px; }
+  body.nav-open .burger i{ background:transparent; }
+  body.nav-open .burger i::before{ top:0; transform:rotate(45deg); }
+  body.nav-open .burger i::after{ top:0; transform:rotate(-45deg); }
+  .menu-contacts{ display:none; }
+
+  @media (max-width:960px){
+    .menu{ position:fixed; inset:0; z-index:200; flex-direction:column; justify-content:center; align-items:flex-start;
+      gap:6px; padding:100px 34px 130px; background:rgba(253,253,251,.98);
+      backdrop-filter:blur(18px); -webkit-backdrop-filter:blur(18px);
+      opacity:0; visibility:hidden; transition:opacity .3s ease, visibility .3s; }
+    body.nav-open .menu{ opacity:1; visibility:visible; }
+    .menu > a{ font-family:var(--font-d); font-size:clamp(28px,7.6vw,40px); font-weight:800; letter-spacing:-.02em;
+      color:var(--ink); padding:8px 0; opacity:0; transform:translateY(20px); transition:opacity .35s ease, transform .45s var(--ease), color .2s; }
+    body.nav-open .menu > a{ opacity:1; transform:none; }
+    body.nav-open .menu > a:nth-child(1){ transition-delay:.05s; } body.nav-open .menu > a:nth-child(2){ transition-delay:.1s; }
+    body.nav-open .menu > a:nth-child(3){ transition-delay:.15s; } body.nav-open .menu > a:nth-child(4){ transition-delay:.2s; }
+    body.nav-open .menu > a:nth-child(5){ transition-delay:.25s; } body.nav-open .menu > a:nth-child(6){ transition-delay:.3s; }
+    .menu > a::after{ height:3px; bottom:6px; }
+    .menu .menu-contacts{ position:absolute; left:34px; right:34px; bottom:44px; display:flex; flex-direction:column; gap:8px;
+      font-size:14px; color:var(--mut); opacity:0; transition:opacity .35s ease .3s; }
+    body.nav-open .menu .menu-contacts{ opacity:1; }
+    .menu .menu-contacts a{ font-family:var(--font-b); font-size:15px; font-weight:500; color:var(--mut); padding:2px 0; }
+    .burger{ display:block; }
+    body.nav-open{ overflow:hidden; }
+  }
+
+  /* ══════════════ 4. HERO — СВЕТЛЫЙ, С ФОТО-КАРТОЧКОЙ ══════════════ */
+  .hero{ position:relative; padding:170px 0 0; overflow:hidden; }
+  /* мягкое тёплое свечение фона */
+  .hero::before{ content:''; position:absolute; inset:-20% -10%; z-index:0; pointer-events:none;
+    background:
+      radial-gradient(42% 46% at 16% 22%, rgba(217,32,48,.07), transparent 70%),
+      radial-gradient(36% 42% at 88% 12%, rgba(255,184,76,.10), transparent 70%),
+      radial-gradient(30% 36% at 72% 78%, rgba(217,32,48,.05), transparent 70%); }
+  .hero-grid{ position:relative; z-index:1; display:grid; grid-template-columns:minmax(0,6.4fr) minmax(0,5.2fr); gap:56px; align-items:center; }
+  .hero h1{ font-size:clamp(40px,5.4vw,68px); font-weight:900; letter-spacing:-.03em; line-height:1.02; }
+  .hero h1 .ac{ color:var(--red); }
+  .hero .lead{ margin:24px 0 34px; }
+  .hero-actions{ display:flex; gap:14px; flex-wrap:wrap; }
+  .hero-note{ margin-top:26px; display:flex; align-items:center; gap:10px; font-size:13.5px; color:var(--faint); }
+  .hero-note svg{ color:var(--red); flex:none; }
+  /* Фото-карточка */
+  .hero-photo{ position:relative; }
+  .hero-photo .ph{ border-radius:28px; overflow:hidden; box-shadow:var(--shadow); border:1px solid var(--line); }
+  .hero-photo .ph img{ width:100%; height:100%; object-fit:cover; aspect-ratio:4/3.4; }
+  .chip{ position:absolute; background:#fff; border:1px solid var(--line); border-radius:16px; padding:14px 18px;
+    box-shadow:var(--shadow-sm); display:flex; align-items:center; gap:12px; }
+  .chip .cnum{ font-family:var(--font-d); font-weight:800; font-size:22px; letter-spacing:-.02em; line-height:1; }
+  .chip .cnum b{ color:var(--red); font-weight:800; }
+  .chip .clbl{ font-size:11.5px; color:var(--mut); line-height:1.3; max-width:14ch; }
+  .chip-1{ left:-26px; top:26px; animation:floaty 6s ease-in-out infinite; }
+  .chip-2{ right:-18px; bottom:70px; animation:floaty 7s ease-in-out .8s infinite; }
+  @keyframes floaty{ 0%,100%{ transform:translateY(0); } 50%{ transform:translateY(-8px); } }
+  /* Каскадное появление */
+  .hero [data-in]{ opacity:0; transform:translateY(22px); }
+  body.ready .hero [data-in]{ animation:heroIn .9s var(--ease) forwards; }
+  body.ready .hero [data-in="1"]{ animation-delay:.05s; } body.ready .hero [data-in="2"]{ animation-delay:.16s; }
+  body.ready .hero [data-in="3"]{ animation-delay:.28s; } body.ready .hero [data-in="4"]{ animation-delay:.4s; }
+  body.ready .hero [data-in="5"]{ animation-delay:.5s; } body.ready .hero [data-in="6"]{ animation-delay:.62s; }
+  @keyframes heroIn{ to{ opacity:1; transform:none; } }
+  /* Полоса фактов */
+  .hero-stats{ margin-top:84px; border-top:1px solid var(--line); background:#fff; }
+  .hero-stats .row{ display:grid; grid-template-columns:repeat(4,1fr); }
+  .hstat{ padding:30px 26px 34px; border-left:1px solid var(--line); }
+  .hstat:first-child{ border-left:none; padding-left:0; }
+  .hstat .num{ font-family:var(--font-d); font-weight:800; font-size:clamp(26px,3vw,38px); letter-spacing:-.02em; }
+  .hstat .num b{ color:var(--red); font-weight:800; }
+  .hstat .lbl{ font-size:12.5px; color:var(--faint); margin-top:5px; line-height:1.45; }
+
+  /* ══════════════ 5. БЕГУЩАЯ СТРОКА (деликатная) ══════════════ */
+  .ticker{ border-bottom:1px solid var(--line); padding:18px 0; overflow:hidden; background:#fff; }
+  .ticker-track{ display:flex; width:max-content; align-items:center; animation:marq 34s linear infinite; }
+  .ticker:hover .ticker-track{ animation-play-state:paused; }
+  .ticker span{ font-family:var(--font-d); font-weight:800; font-size:clamp(16px,2vw,21px); letter-spacing:.12em;
+    text-transform:uppercase; color:var(--faint); white-space:nowrap; opacity:.7; }
+  .ticker i{ font-style:normal; color:var(--red); margin:0 24px; font-size:11px; }
+  @keyframes marq{ to{ transform:translateX(-50%); } }
+
+  /* ══════════════ 6. О ДВИЖЕНИИ ══════════════ */
+  .about-grid{ display:grid; grid-template-columns:minmax(0,5fr) minmax(0,6fr); gap:60px; align-items:start; }
+  .about-grid h2{ max-width:13ch; }
+  .about-grid h2 em{ font-style:normal; color:var(--red); }
+  .about-col p + p{ margin-top:16px; }
+  .pillars{ display:flex; gap:10px; flex-wrap:wrap; margin-top:28px; }
+  .pillars span{ display:inline-flex; align-items:center; gap:9px; font-weight:600; font-size:13px; color:var(--ink);
+    background:#fff; border:1px solid var(--line-2); border-radius:999px; padding:10px 18px; transition:border-color .25s, box-shadow .25s; }
+  .pillars span::before{ content:''; width:6px; height:6px; border-radius:50%; background:var(--red); }
+  .pillars span:hover{ border-color:rgba(217,32,48,.45); box-shadow:var(--shadow-sm); }
+
+  /* Программное заявление */
+  .statement{ padding:92px 0; background:var(--bg-2); border-block:1px solid var(--line); }
+  .statement blockquote{ font-family:var(--font-d); font-weight:800; letter-spacing:-.018em; line-height:1.26;
+    font-size:clamp(22px,3vw,36px); max-width:28ch; margin:0 auto; text-align:center; }
+  .statement blockquote em{ font-style:normal; color:var(--red); }
+  .statement .who{ text-align:center; margin-top:20px; color:var(--faint); font-size:12.5px; letter-spacing:.14em; text-transform:uppercase; font-weight:600; }
+
+  /* ══════════════ 7. НАПРАВЛЕНИЯ — BENTO ══════════════ */
+  .bento{ display:grid; grid-template-columns:repeat(12,1fr); gap:18px; }
+  .bcard{ position:relative; grid-column:span 4; background:var(--panel); border:1px solid var(--line);
+    border-radius:var(--r); padding:30px; overflow:hidden; box-shadow:var(--shadow-sm);
+    transition:transform .25s var(--ease), border-color .3s, box-shadow .3s; }
+  .bcard:hover{ transform:translateY(-5px); border-color:rgba(217,32,48,.3); box-shadow:var(--shadow); }
+  .bcard .idx{ position:absolute; top:20px; right:24px; font-family:var(--font-d); font-weight:900; font-size:42px;
+    line-height:1; color:transparent; -webkit-text-stroke:1px rgba(22,23,27,.1); transition:-webkit-text-stroke .3s; }
+  .bcard:hover .idx{ -webkit-text-stroke:1px rgba(217,32,48,.4); }
+  .bcard .ic{ width:54px; height:54px; border-radius:15px; background:var(--rose); color:var(--red);
+    display:grid; place-items:center; margin-bottom:20px; transition:transform .35s var(--ease); }
+  .bcard:hover .ic{ transform:scale(1.06) rotate(-4deg); }
+  .bcard h3{ margin-bottom:10px; }
+  .bcard p{ font-size:15px; }
+  .bcard.b-lg{ grid-column:span 8; grid-row:span 2; display:flex; flex-direction:column; justify-content:flex-end; min-height:420px;
+    background:linear-gradient(210deg, var(--rose), transparent 52%), var(--panel); }
+  .bcard.b-lg h3{ font-size:clamp(23px,2.2vw,30px); }
+  .bcard.b-lg p{ max-width:52ch; }
+  .bcard.b-lg .ic{ position:absolute; top:30px; left:30px; margin:0; }
+  .bcard.b-lg::before{ content:''; position:absolute; right:-24px; top:-30px; width:min(300px,50%); aspect-ratio:910/993;
+    background:url(assets/logo-mark.png) center/contain no-repeat; opacity:.045; transform:rotate(9deg); pointer-events:none; }
+  .bcard.b-wide{ grid-column:span 12; display:flex; align-items:center; gap:30px; }
+  .bcard.b-wide .ic{ flex:none; width:72px; height:72px; margin:0; background:var(--bg-2); }
+  .bcard.b-wide h3{ margin-bottom:8px; }
+
+  /* ══════════════ 8. МЕРОПРИЯТИЯ / VK ══════════════ */
+  .events{ background:var(--bg-2); border-block:1px solid var(--line); }
+  .events-grid{ display:grid; grid-template-columns:minmax(0,1fr) minmax(0,1fr); gap:56px; align-items:start; }
+  .events .how{ margin-top:22px; display:flex; flex-direction:column; gap:12px; }
+  .events .how div{ display:flex; gap:12px; align-items:flex-start; font-size:15px; color:var(--mut); }
+  .events .how svg{ flex:none; color:var(--red); margin-top:3px; }
+  .events-cta{ display:flex; gap:10px; flex-wrap:wrap; margin-top:30px; }
+  .vk-box{ background:#fff; border:1px solid var(--line); border-radius:var(--r); padding:14px; min-height:480px; box-shadow:var(--shadow-sm); }
+  .vk-placeholder{ height:100%; min-height:452px; border:1.5px dashed var(--line-2); border-radius:14px;
+    display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; padding:32px; gap:12px; }
+  .vk-placeholder .vkmark{ width:56px; height:56px; border-radius:15px; background:#0077FF; color:#fff;
+    display:grid; place-items:center; font-weight:800; font-size:15px; }
+  .vk-placeholder p{ max-width:36ch; font-size:13.5px; }
+
+  /* ══════════════ 9. НАГРАДЫ ══════════════ */
+  .marquee{ overflow:hidden; touch-action:pan-y; cursor:grab;
+    -webkit-mask-image:linear-gradient(90deg,transparent,#000 6%,#000 94%,transparent);
+    mask-image:linear-gradient(90deg,transparent,#000 6%,#000 94%,transparent); }
+  .marquee:active{ cursor:grabbing; }
+  .m-track{ display:flex; width:max-content; will-change:transform; }
+  .aw-fig{ flex:none; width:170px; margin-right:18px; aspect-ratio:3/4; background:#fff; border-radius:12px;
+    border:1px solid var(--line); padding:9px; display:flex; align-items:center; justify-content:center; cursor:zoom-in;
+    overflow:hidden; box-shadow:var(--shadow-sm); transition:transform .25s var(--ease), box-shadow .3s; }
+  .aw-fig:hover{ transform:translateY(-6px); box-shadow:var(--shadow); }
+  .aw-fig img{ max-width:100%; max-height:100%; object-fit:contain; border-radius:4px; }
+  .hint{ display:inline-flex; align-items:center; gap:9px; margin-top:26px; font-size:13px; font-weight:600; color:var(--mut);
+    background:#fff; border:1px solid var(--line-2); border-radius:999px; padding:10px 18px; box-shadow:var(--shadow-sm); }
+  .hint svg{ color:var(--red); flex:none; }
+
+  /* ══════════════ 10. КОМАНДА ══════════════ */
+  .team-grid{ display:grid; grid-template-columns:minmax(0,7fr) minmax(0,5fr); gap:18px; align-items:stretch; }
+  .mcard{ background:#fff; border:1px solid var(--line); border-radius:var(--r); padding:34px; box-shadow:var(--shadow-sm);
+    transition:transform .25s var(--ease), box-shadow .3s; }
+  .mcard:hover{ transform:translateY(-4px); box-shadow:var(--shadow); }
+  .mcard-lead{ display:grid; grid-template-columns:150px 1fr; gap:30px; align-items:center; }
+  .mcard .ava{ width:150px; height:150px; border-radius:26px; overflow:hidden; display:grid; place-items:center;
+    background:linear-gradient(150deg,var(--red),var(--red-deep)); color:#fff; font-family:var(--font-d); font-weight:900; font-size:46px; }
+  .mcard .ava img{ width:100%; height:100%; object-fit:cover; }
+  .badge{ display:inline-block; font-size:11px; font-weight:800; letter-spacing:.14em; text-transform:uppercase;
+    color:var(--red); background:var(--rose); border:1px solid rgba(217,32,48,.25); padding:6px 13px; border-radius:999px; margin-bottom:14px; }
+  .mcard h3{ margin-bottom:4px; }
+  .mcard .role{ color:var(--faint); font-weight:600; font-size:13px; margin-bottom:12px; }
+  .mcard p{ font-size:15px; }
+  .mcard-sub .ava{ width:96px; height:96px; border-radius:20px; font-size:26px; }
+  .mcard-sub{ display:flex; flex-direction:column; gap:20px; justify-content:center; }
+  .mcard-sub .top{ display:flex; align-items:center; gap:20px; }
+
+  /* ══════════════ 11. ПАРТНЁРЫ ══════════════ */
+  .partners{ background:var(--bg-2); border-block:1px solid var(--line); }
+  .partner{ flex:none; height:104px; min-width:180px; margin-right:18px; background:#fff;
+    border:1px solid var(--line); border-radius:16px; display:flex; align-items:center; justify-content:center;
+    padding:0 36px; box-shadow:var(--shadow-sm); transition:box-shadow .3s, transform .25s var(--ease); }
+  .partner:hover{ transform:translateY(-3px); box-shadow:var(--shadow); }
+  .partner img{ height:56px; width:auto; max-width:300px; object-fit:contain; }
+
+  /* ══════════════ 12. ОТЗЫВЫ ══════════════ */
+  .quotes{ display:grid; grid-template-columns:repeat(3,1fr); gap:18px; }
+  .quote{ background:#fff; border:1px solid var(--line); border-radius:var(--r); padding:30px; box-shadow:var(--shadow-sm);
+    display:flex; flex-direction:column; transition:transform .25s var(--ease), box-shadow .3s; }
+  .quote:hover{ transform:translateY(-4px); box-shadow:var(--shadow); }
+  .quote .stars{ color:var(--red); font-size:14px; letter-spacing:3px; margin-bottom:14px; }
+  .quote p{ color:var(--ink); font-size:15.5px; flex:1; }
+  .quote .person{ display:flex; align-items:center; gap:12px; margin-top:22px; padding-top:18px; border-top:1px solid var(--line); }
+  .quote .pava{ width:44px; height:44px; border-radius:50%; background:var(--bg-2); border:1px solid var(--line-2);
+    display:grid; place-items:center; color:var(--faint); flex:none; }
+  .quote .pname{ font-weight:700; font-size:14.5px; }
+  .quote .pmeta{ color:var(--faint); font-size:12.5px; }
+
+  /* ══════════════ 13. ПОДДЕРЖАТЬ — ТЁПЛАЯ СЦЕНА ══════════════ */
+  .support-panel{ position:relative; border-radius:30px; overflow:hidden; padding:clamp(40px,6vw,68px);
+    background:linear-gradient(155deg,#FFF3F3 0%, #FFE9E9 55%, #FFE2DE 100%); border:1px solid rgba(217,32,48,.14); }
+  .support-panel::after{ content:''; position:absolute; right:-6%; bottom:-24%; width:min(480px,56vw); aspect-ratio:910/993;
+    background:url(assets/logo-mark.png) center/contain no-repeat; opacity:.05; pointer-events:none; transform:rotate(8deg); }
+  .support-panel .eyebrow{ color:rgba(217,32,48,.75); } .support-panel .eyebrow::before{ background:var(--red); }
+  .support-panel h2{ max-width:18ch; }
+  .support-panel h2 em{ font-style:normal; color:var(--red); }
+  .support-panel .lead{ color:#6B5A5A; margin-top:16px; }
+  .perks{ display:grid; grid-template-columns:repeat(3,1fr); gap:16px; margin-top:42px; position:relative; z-index:1; }
+  .perk{ background:rgba(255,255,255,.8); border:1px solid rgba(217,32,48,.12); border-radius:18px; padding:26px;
+    backdrop-filter:blur(6px); -webkit-backdrop-filter:blur(6px); transition:background .3s, transform .25s var(--ease), box-shadow .3s; }
+  .perk:hover{ background:#fff; transform:translateY(-4px); box-shadow:var(--shadow-sm); }
+  .perk .pic{ width:46px; height:46px; border-radius:13px; background:var(--red); color:#fff; display:grid; place-items:center; margin-bottom:16px; }
+  .perk h3{ font-size:17px; margin-bottom:7px; }
+  .perk p{ color:var(--mut); font-size:14px; }
+  .support-cta{ margin-top:40px; display:flex; gap:18px; flex-wrap:wrap; align-items:center; position:relative; z-index:1; }
+  .support-cta span{ color:#6B5A5A; font-size:13.5px; max-width:36ch; }
+  .support-cta a.mail{ color:var(--red); font-weight:600; text-decoration:underline; }
+
+  /* ══════════════ 14. ЗАЯВКА ══════════════ */
+  .join-grid{ display:grid; grid-template-columns:minmax(0,1fr) minmax(0,1fr); gap:64px; align-items:center; }
+  .contacts{ margin-top:28px; display:flex; flex-direction:column; gap:14px; }
+  .contacts a,.contacts div{ display:flex; align-items:center; gap:13px; font-weight:500; font-size:15px; color:var(--ink); transition:color .2s; }
+  .contacts a:hover{ color:var(--red); }
+  .contacts svg{ flex:none; color:var(--red); }
+  .form{ background:#fff; border:1px solid var(--line); border-radius:26px; padding:34px; box-shadow:var(--shadow); }
+  .form label{ display:block; font-size:13px; font-weight:600; margin-bottom:7px; color:var(--mut); }
+  .field{ margin-bottom:16px; }
+  .form input,.form textarea,.form select{ width:100%; border:1px solid var(--line-2); border-radius:13px; padding:14px 15px;
+    font:inherit; font-size:15px; color:var(--ink); background:var(--bg-2); transition:border-color .2s, box-shadow .2s, background .2s; }
+  .form input::placeholder,.form textarea::placeholder{ color:var(--faint); }
+  .form select{ appearance:none; -webkit-appearance:none;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='%23989ca4' stroke-width='2.4' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");
+    background-repeat:no-repeat; background-position:right 15px center; }
+  .form input:focus,.form textarea:focus,.form select:focus{ outline:none; border-color:var(--red); background:#fff;
+    box-shadow:0 0 0 3px rgba(217,32,48,.12); }
+  .form .note{ font-size:12.5px; color:var(--faint); margin-top:12px; line-height:1.5; }
+
+  /* ══════════════ 15. ДОКУМЕНТЫ ══════════════ */
+  .docs{ background:var(--bg-2); border-top:1px solid var(--line); }
+  .docs-grid{ display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:14px; }
+  .doc{ display:flex; align-items:center; gap:16px; background:#fff; border:1px solid var(--line); border-radius:16px;
+    padding:20px 22px; box-shadow:var(--shadow-sm); transition:transform .2s var(--ease), border-color .3s, box-shadow .3s; cursor:pointer; }
+  .doc:hover{ transform:translateY(-3px); border-color:rgba(217,32,48,.3); box-shadow:var(--shadow); }
+  .doc:active{ transform:scale(.985); }
+  .doc .di{ width:46px; height:46px; border-radius:13px; background:var(--rose); color:var(--red); display:grid; place-items:center; flex:none; }
+  .doc .dt{ flex:1; min-width:0; }
+  .doc .dt h4{ font-size:15px; font-weight:700; }
+  .doc .dt span{ font-size:12.5px; color:var(--faint); }
+  .doc .dl{ color:var(--faint); flex:none; transition:transform .25s var(--ease), color .2s; }
+  .doc:hover .dl{ color:var(--red); transform:translateY(2px); }
+  .toast{ position:fixed; left:50%; bottom:28px; transform:translateX(-50%) translateY(20px); background:var(--ink); color:#fff;
+    padding:13px 22px; border-radius:999px; font-size:14px; font-weight:600; box-shadow:var(--shadow);
+    opacity:0; pointer-events:none; transition:opacity .3s ease, transform .3s var(--ease); z-index:150; max-width:88vw; text-align:center; }
+  .toast.show{ opacity:1; transform:translateX(-50%) translateY(0); }
+
+  /* ══════════════ 16. ПОДВАЛ ══════════════ */
+  footer{ background:#111216; color:rgba(255,255,255,.65); padding:70px 0 40px; }
+  .foot{ display:grid; grid-template-columns:1.4fr 1fr 1fr; gap:56px; align-items:start; }
+  .foot-brand{ display:flex; align-items:center; gap:14px; font-family:var(--font-d); font-weight:900; font-size:25px; letter-spacing:.04em; color:#fff; }
+  .foot-brand img{ height:56px; width:auto; }
+  .foot p{ color:rgba(255,255,255,.55); }
+  .foot-col{ display:flex; flex-direction:column; gap:10px; font-size:14px; }
+  .foot-col strong{ color:#fff; margin-bottom:4px; font-size:13px; letter-spacing:.14em; text-transform:uppercase; }
+  .foot-col a{ color:rgba(255,255,255,.65); transition:color .2s; width:fit-content; }
+  .foot-col a:hover{ color:#fff; }
+  .foot-col span{ color:rgba(255,255,255,.65); }
+  .studio{ margin-top:56px; padding-top:36px; border-top:1px solid rgba(255,255,255,.12); text-align:center; }
+  .studio img{ height:86px; width:auto; margin:0 auto 14px; opacity:.92; }
+  .studio .s1{ font-family:var(--font-d); font-size:16px; font-weight:800; color:rgba(255,255,255,.9); letter-spacing:-.01em; }
+  .studio .s2{ font-size:13px; color:rgba(255,255,255,.45); margin-top:6px; }
+  .copyright{ margin-top:34px; text-align:center; font-size:13px; color:rgba(255,255,255,.4); }
+
+  /* ══════════════ 17. ЛАЙТБОКС ══════════════ */
+  .lightbox{ position:fixed; inset:0; background:rgba(15,16,20,.9); display:none; align-items:center; justify-content:center;
+    z-index:250; padding:30px; backdrop-filter:blur(6px); -webkit-backdrop-filter:blur(6px); }
+  .lightbox.open{ display:flex; }
+  .lightbox img{ max-width:min(92vw,760px); max-height:86vh; border-radius:10px; box-shadow:0 40px 120px rgba(0,0,0,.6);
+    animation:lbIn .3s var(--ease); }
+  @keyframes lbIn{ from{ opacity:0; transform:scale(.94); } to{ opacity:1; transform:scale(1); } }
+  .lb-btn{ position:absolute; width:50px; height:50px; border-radius:50%; border:1px solid rgba(255,255,255,.25);
+    background:rgba(255,255,255,.1); color:#fff; font-size:22px; cursor:pointer; display:grid; place-items:center;
+    transition:background .2s, transform .15s; }
+  .lb-btn:hover{ background:rgba(255,255,255,.22); } .lb-btn:active{ transform:scale(.92); }
+  .lb-close{ top:22px; right:24px; }
+  .lb-prev{ left:22px; top:50%; transform:translateY(-50%); }
+  .lb-next{ right:22px; top:50%; transform:translateY(-50%); }
+  .lb-count{ position:absolute; bottom:24px; left:50%; transform:translateX(-50%); color:rgba(255,255,255,.65);
+    font-size:13px; font-weight:600; letter-spacing:.12em; }
+
+  /* ══════════════ 18. ДВИЖЕНИЕ / REVEAL ══════════════ */
+  .reveal{ opacity:0; transform:translateY(24px);
+    transition:opacity .65s var(--ease), transform .65s var(--ease); }
+  .reveal.in{ opacity:1; transform:none; }
+
+  @media (prefers-reduced-motion:reduce){
+    *,*::before,*::after{ animation:none !important; transition:none !important; }
+    .reveal,.hero [data-in]{ opacity:1 !important; transform:none !important; }
+    #intro{ display:none !important; }
+    html{ scroll-behavior:auto; }
+  }
+
+  /* ══════════════ 19. АДАПТИВ ══════════════ */
+  @media (max-width:960px){
+    section{ padding:80px 0; }
+    .hero{ padding-top:130px; }
+    .hero-grid{ grid-template-columns:1fr; gap:44px; }
+    .hero-photo{ max-width:560px; }
+    .chip-1{ left:8px; top:14px; } .chip-2{ right:8px; bottom:14px; }
+    .about-grid,.events-grid,.join-grid{ grid-template-columns:1fr; gap:40px; }
+    .about-grid h2{ max-width:none; }
+    .bento{ grid-template-columns:repeat(2,1fr); gap:14px; }
+    .bcard,.bcard.b-lg{ grid-column:span 2 !important; grid-row:auto; min-height:0; }
+    .bcard.b-lg .ic{ position:static; margin-bottom:20px; }
+    .bcard.b-wide{ grid-column:span 2; }
+    .team-grid{ grid-template-columns:1fr; }
+    .quotes{ grid-template-columns:1fr; }
+    .perks{ grid-template-columns:1fr; }
+    .foot{ grid-template-columns:1fr 1fr; gap:36px; }
+    .hero-stats{ margin-top:64px; }
+    .hero-stats .row{ grid-template-columns:repeat(2,1fr); }
+    .hstat{ padding:20px 20px 22px; }
+    .hstat:nth-child(odd){ border-left:none; padding-left:0; }
+  }
+  @media (max-width:560px){
+    .wrap{ padding:0 18px; }
+    section{ padding:60px 0; }
+    section[id]{ scroll-margin-top:72px; }
+    .nav{ height:66px; } header.scrolled .nav{ height:60px; }
+    .logo img{ height:34px; } .logo-txt{ font-size:17px; }
+    .nav-cta .btn{ height:40px; padding:0 16px; font-size:13px; }
+    .hero{ padding-top:104px; }
+    .hero h1{ font-size:clamp(34px,9.6vw,46px); }
+    .hero .lead{ margin:18px 0 26px; }
+    .hero-actions .btn{ width:100%; }
+    .chip{ padding:10px 14px; } .chip .cnum{ font-size:18px; }
+    .hero-stats{ margin-top:52px; }
+    .hstat .num{ font-size:24px; } .hstat .lbl{ font-size:11px; }
+    .sec-head{ margin-bottom:34px; }
+    .bcard{ padding:24px; }
+    .bcard.b-wide{ flex-direction:column; align-items:flex-start; gap:18px; }
+    .mcard{ padding:26px; }
+    .mcard-lead{ grid-template-columns:1fr; justify-items:center; text-align:center; gap:22px; }
+    .mcard-sub .top{ flex-direction:column; text-align:center; }
+    .form{ padding:24px; }
+    .docs-grid{ grid-template-columns:1fr; }
+    .foot{ grid-template-columns:1fr; gap:32px; }
+    .support-panel::after{ right:-30%; bottom:-10%; }
+    .aw-fig{ width:136px; }
+    .lb-prev,.lb-next{ display:none; }
+  }
+</style>
+</head>
+<body>
+
+<div class="scrollbar" id="scrollbar"></div>
+
+<!-- ═══ ЗАСТАВКА (показывается один раз за визит) ═══ -->
+<div id="intro" role="button" aria-label="Пропустить заставку">
+  <div class="in-wrap">
+    <img src="assets/logo-mark.png" alt="" />
+    <div class="in-name">АНО ФРМ «КИБЕРМОЛ»</div>
+    <div class="in-slogan">Здоровая молодёжь — <b>сильная Россия</b></div>
+    <div class="in-line"></div>
+  </div>
+</div>
+
+<!-- ═══ ШАПКА ═══ -->
+<header id="header">
+  <div class="wrap">
+    <nav class="nav" aria-label="Основная навигация">
+      <a class="logo" href="#top" aria-label="Кибермол — на главную">
+        <img src="assets/logo-mark.png" alt="Логотип «Кибермол»" />
+        <span class="logo-txt">КИБЕРМОЛ<small>Москва · Капотня · 5/26</small></span>
+      </a>
+      <div class="menu" id="menu">
+        <a href="#about">О движении</a>
+        <a href="#directions">Направления</a>
+        <a href="#events">Мероприятия</a>
+        <a href="#awards">Награды</a>
+        <a href="#team">Команда</a>
+        <a href="#docs">Документы</a>
+        <div class="menu-contacts">
+          <a href="tel:+79264129010">+7 (926) 412-90-10</a>
+          <a href="mailto:frmcybermol@yandex.ru">frmcybermol@yandex.ru</a>
+          <span>Москва, Капотня, 5-й квартал, д. 26</span>
+        </div>
+      </div>
+      <div class="nav-cta">
+        <a href="#support" class="btn btn-red">Поддержать</a>
+        <button class="burger" id="burger" aria-label="Открыть меню" aria-expanded="false" aria-controls="menu"><i></i></button>
+      </div>
+    </nav>
+  </div>
+</header>
+<span id="top"></span>
+
+<main>
+<!-- ═══ HERO ═══ -->
+<section class="hero" aria-label="Главный экран">
+  <div class="wrap hero-grid">
+    <div>
+      <p class="eyebrow" data-in="1">Молодёжное движение · Москва · с 2022 года</p>
+      <h1 data-in="2">Здоровая молодёжь — <span class="ac">сильная Россия</span></h1>
+      <p class="lead" data-in="3">Спорт, наставники и настоящее дело. Помогаем ребятам расти здоровыми, уверенными и неравнодушными — в зале, в команде и в жизни.</p>
+      <div class="hero-actions" data-in="4">
+        <a href="#join" class="btn btn-red">Стать участником</a>
+        <a href="#directions" class="btn btn-ghost">Смотреть направления</a>
+      </div>
+      <p class="hero-note" data-in="5"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l8 4v5c0 5-3.5 8-8 9-4.5-1-8-4-8-9V7z"/></svg>Автономная некоммерческая организация · участие для ребят бесплатное</p>
+    </div>
+    <div class="hero-photo" data-in="6">
+      <div class="ph"><img src="assets/event-team.jpg" alt="Участники движения «Кибермол» с медалями после турнира" fetchpriority="high" /></div>
+      <div class="chip chip-1"><div class="cnum"><b>19+</b></div><div class="clbl">наград и благодарностей</div></div>
+      <div class="chip chip-2"><div class="cnum">34</div><div class="clbl">спортсмена-разрядника</div></div>
+    </div>
+  </div>
+  <div class="hero-stats">
+    <div class="wrap row">
+      <div class="hstat"><div class="num">2022</div><div class="lbl">год основания движения</div></div>
+      <div class="hstat"><div class="num"><b>19+</b></div><div class="lbl">наград и благодарственных писем</div></div>
+      <div class="hstat"><div class="num">34</div><div class="lbl">подготовленных спортсмена-разрядника</div></div>
+      <div class="hstat"><div class="num">3</div><div class="lbl">кандидата в мастера спорта</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ БЕГУЩАЯ СТРОКА ═══ -->
+<div class="ticker" aria-hidden="true">
+  <div class="ticker-track" id="tickerTrack"></div>
+</div>
+
+<!-- ═══ О ДВИЖЕНИИ ═══ -->
+<section id="about">
+  <div class="wrap about-grid">
+    <div>
+      <p class="eyebrow"><b>01</b> О движении</p>
+      <h2 class="reveal">Характер воспитывается <em>делом</em></h2>
+    </div>
+    <div class="about-col reveal">
+      <p class="lead">«Кибермол» — автономная некоммерческая организация по развитию молодёжного спорта и патриотического воспитания. Мы помогаем молодым людям обрести опору: крепкое здоровье, уважение к традициям и культуре, любовь к Родине и умение добиваться целей.</p>
+      <p>Вместо лекций о ценностях — условия, в которых они становятся привычкой: тренировка, команда, доброе дело, результат. Каждый день, в зале и в жизни.</p>
+      <div class="pillars">
+        <span>Дисциплина</span><span>Команда</span><span>Честь</span><span>Забота</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ НАПРАВЛЕНИЯ ═══ -->
+<section id="directions" style="padding-top:0">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="eyebrow"><b>02</b> Чем мы занимаемся</p>
+      <h2 class="reveal">Семь направлений. Одна цель.</h2>
+    </div>
+    <div class="bento">
+      <div class="bcard b-lg reveal">
+        <span class="idx">01</span>
+        <div class="ic"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9a3 3 0 1 0 0 6M18 9a3 3 0 1 1 0 6M9 12h6"/></svg></div>
+        <h3>Спорт и бокс</h3>
+        <p>Тренировки в боксёрском клубе под руководством опытных наставников, турниры и спортивные сборы. Уже подготовлено 34 спортсмена-разрядника и 3 кандидата в мастера спорта.</p>
+      </div>
+      <div class="bcard reveal" style="grid-column:span 4">
+        <span class="idx">02</span>
+        <div class="ic"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l8 4v5c0 5-3.5 8-8 9-4.5-1-8-4-8-9V7z"/></svg></div>
+        <h3>Патриотическое воспитание</h3>
+        <p>Встречи, акции и проекты к важным датам. Уважение к истории страны — через дело.</p>
+      </div>
+      <div class="bcard reveal">
+        <span class="idx">03</span>
+        <div class="ic"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.6l-1-1a5.5 5.5 0 0 0-7.8 7.8l1 1L12 21l7.8-7.6 1-1a5.5 5.5 0 0 0 0-7.8z"/></svg></div>
+        <h3>Волонтёрство</h3>
+        <p>Помощь тем, кому трудно, и благоустройство районов. Добрые дела — рядом с домом.</p>
+      </div>
+      <div class="bcard reveal">
+        <span class="idx">04</span>
+        <div class="ic"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.4 8.4 0 0 1-9 8.4 9 9 0 0 1-4-1L3 20l1.1-4.9a8.4 8.4 0 0 1-1-4A8.4 8.4 0 0 1 12 3a8.4 8.4 0 0 1 9 8.5z"/></svg></div>
+        <h3>Психологическая помощь</h3>
+        <p>Социальная, правовая и информационная поддержка молодёжи и незащищённых слоёв населения.</p>
+      </div>
+      <div class="bcard reveal">
+        <span class="idx">05</span>
+        <div class="ic"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg></div>
+        <h3>Здоровый образ жизни</h3>
+        <p>Продвижение ЗОЖ, донорства крови, милосердия и гуманизма среди молодёжи.</p>
+      </div>
+      <div class="bcard reveal">
+        <span class="idx">06</span>
+        <div class="ic"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="6" width="20" height="12" rx="3"/><path d="M7 12h3M8.5 10.5v3M15 11h.01M18 13h.01"/></svg></div>
+        <h3>Досуг и киберспорт</h3>
+        <p>Игры, турниры и встречи — место, где интересно проводить время и находить друзей.</p>
+      </div>
+      <div class="bcard b-wide reveal">
+        <span class="idx">07</span>
+        <div class="ic"><img src="assets/studio-symbol.png" alt="Символ студии Sam Bruev" style="width:100%; height:100%; object-fit:contain; padding:12px;" /></div>
+        <div>
+          <h3>Музыкальное искусство</h3>
+          <p>Студия звукозаписи и мастер-классы по звукорежиссуре. Помогаем молодым музыкантам расти и создавать качественный материал — от первой идеи до готового трека.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ ПРОГРАММНОЕ ЗАЯВЛЕНИЕ ═══ -->
+<section class="statement" aria-label="Наша позиция">
+  <div class="wrap">
+    <blockquote class="reveal">Сильное общество начинается с <em>неравнодушной молодёжи</em>. Мы каждый день создаём для этого возможности.</blockquote>
+    <div class="who reveal">Команда «Кибермол»</div>
+  </div>
+</section>
+
+<!-- ═══ МЕРОПРИЯТИЯ (VK) ═══ -->
+<section id="events" class="events" style="border-top:0">
+  <div class="wrap events-grid">
+    <div>
+      <p class="eyebrow"><b>03</b> Афиша и отчёты</p>
+      <h2 class="reveal">Мероприятия</h2>
+      <p class="lead reveal" style="margin-top:18px">Анонсы турниров, акций и встреч публикуются в сообществе ВКонтакте — и автоматически появляются на этой странице.</p>
+      <div class="how reveal">
+        <div><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Подпишитесь, чтобы не пропускать события</div>
+        <div><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Пост в группе — сразу и на сайте, ничего загружать отдельно не нужно</div>
+      </div>
+      <div class="events-cta reveal">
+        <a href="#" id="vk-link" class="btn btn-ghost">Открыть сообщество ВК</a>
+        <a href="#" id="max-link" class="btn btn-ghost" aria-label="Сообщество в MAX" style="gap:9px">
+          <img src="assets/max-logo.png" alt="" width="22" height="22" style="display:block" /> MAX
+        </a>
+      </div>
+    </div>
+    <div class="vk-box reveal">
+      <div id="vk_groups"></div>
+      <div id="vk_fallback" class="vk-placeholder">
+        <div class="vkmark">VK</div>
+        <h3>Лента сообщества</h3>
+        <p>Здесь автоматически появятся посты из группы ВКонтакте, как только будет указан её адрес.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ НАГРАДЫ ═══ -->
+<section id="awards">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="eyebrow"><b>04</b> Признание</p>
+      <h2 class="reveal">Нас благодарят за дело</h2>
+      <p class="lead reveal" style="margin-top:16px">Грамоты и благодарственные письма от органов власти и общественных организаций — за вклад в развитие молодёжного спорта и воспитание.</p>
+    </div>
+  </div>
+  <div class="marquee" data-speed="0.75">
+    <div class="m-track" id="gallery"></div>
+  </div>
+  <div class="wrap">
+    <span class="hint"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3M11 8v6M8 11h6"/></svg>18 наград в ленте — нажмите на любую, чтобы рассмотреть крупнее</span>
+  </div>
+</section>
+
+<!-- ═══ КОМАНДА ═══ -->
+<section id="team" style="padding-top:0">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="eyebrow"><b>05</b> Команда</p>
+      <h2 class="reveal">Наставники, которые рядом</h2>
+    </div>
+    <div class="team-grid">
+      <div class="mcard reveal">
+        <div class="mcard-lead">
+          <div class="ava" aria-hidden="true">ФА</div>
+          <div>
+            <span class="badge">Директор движения</span>
+            <h3>Фомин Алексей Анатольевич</h3>
+            <div class="role">Тренер по боксу первой категории · Федерация бокса Москвы</div>
+            <p>Основатель и руководитель «Кибермола». Подготовил 3 кандидатов в мастера спорта и 31 спортсмена-перворазрядника. Воспитывает в ребятах характер, дисциплину и волю к победе.</p>
+          </div>
+        </div>
+      </div>
+      <div class="mcard mcard-sub reveal">
+        <div class="top">
+          <div class="ava"><img src="assets/avatar-bruev.jpg" alt="Бруев Семён Сергеевич" /></div>
+          <div>
+            <span class="badge">Партнёр · наставник</span>
+            <h3 style="font-size:19px">Бруев Семён Сергеевич</h3>
+            <div class="role">Музыкальный звукорежиссёр, выпускник ИСИ</div>
+          </div>
+        </div>
+        <p>Проводит мастер-классы по музыкальному искусству в учебных заведениях и на площадках по всей России — от Хакасии до Санкт-Петербурга. Отмечен благодарностью главы района Капотня.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ ПАРТНЁРЫ ═══ -->
+<section id="partners" class="partners">
+  <div class="wrap sec-head" style="text-align:center; margin-left:auto; margin-right:auto;">
+    <p class="eyebrow" style="justify-content:center"><b>06</b> Вместе с нами</p>
+    <h2 class="reveal">Партнёры движения</h2>
+    <p class="lead reveal" style="margin:16px auto 0">Нам помогают те, кому важно будущее молодёжи.</p>
+  </div>
+  <div class="marquee" data-speed="0.55">
+    <div class="m-track" id="partnersTrack"></div>
+  </div>
+</section>
+
+<!-- ═══ ОТЗЫВЫ ═══ -->
+<section id="reviews">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="eyebrow"><b>07</b> Отзывы</p>
+      <h2 class="reveal">Что говорят участники</h2>
+    </div>
+    <div class="quotes">
+      <div class="quote reveal"><div class="stars">★★★★★</div><p>«Здесь я нашёл команду и занятие по душе. Тренировки дисциплинируют, а ребята всегда поддержат.»</p>
+        <div class="person"><div class="pava"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M5 20a7 7 0 0 1 14 0"/></svg></div><div><div class="pname">Алексей М.</div><div class="pmeta">Участник движения · Москва</div></div></div></div>
+      <div class="quote reveal"><div class="stars">★★★★★</div><p>«Сын стал увереннее и собраннее. Спасибо наставникам за внимание к каждому.»</p>
+        <div class="person"><div class="pava"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M5 20a7 7 0 0 1 14 0"/></svg></div><div><div class="pname">Марина К.</div><div class="pmeta">Родитель участника</div></div></div></div>
+      <div class="quote reveal"><div class="stars">★★★★★</div><p>«Волонтёрские акции — это про настоящие дела и хороших людей рядом.»</p>
+        <div class="person"><div class="pava"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M5 20a7 7 0 0 1 14 0"/></svg></div><div><div class="pname">Дмитрий П.</div><div class="pmeta">Волонтёр движения</div></div></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ ПОДДЕРЖАТЬ ═══ -->
+<section id="support" style="padding-top:0">
+  <div class="wrap">
+    <div class="support-panel reveal">
+      <p class="eyebrow">Благотворительность</p>
+      <h2>Поддержите <em>ребят</em></h2>
+      <p class="lead">Каждый вклад — это тренировки, турниры и поездки для участников движения. Поддержите разово или станьте постоянным партнёром, а мы скажем спасибо делом.</p>
+      <div class="perks">
+        <div class="perk">
+          <div class="pic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 15a5 5 0 1 0 0-10 5 5 0 0 0 0 10z"/><path d="M8.5 13.5L7 22l5-3 5 3-1.5-8.5"/></svg></div>
+          <h3>Именная грамота</h3>
+          <p>Благодарственная грамота за поддержку движения — лично вам или вашей компании.</p>
+        </div>
+        <div class="perk">
+          <div class="pic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 17V5a2 2 0 0 1 2-2h9l5 5v9a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2z"/><path d="M14 3v6h6"/></svg></div>
+          <h3>Партнёр мероприятия</h3>
+          <p>Ваш логотип и статус официального партнёра на наших турнирах и акциях.</p>
+        </div>
+        <div class="perk">
+          <div class="pic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12h18M3 12l4-7M3 12l4 7M21 12l-4-7M21 12l-4 7"/></svg></div>
+          <h3>Благотворительная поездка</h3>
+          <p>Приглашение присоединиться к поездке вместе с командой движения.</p>
+        </div>
+      </div>
+      <div class="support-cta">
+        <a href="#" id="donate" class="btn btn-red">Сделать пожертвование</a>
+        <span>или напишите нам — обсудим партнёрство: <a class="mail" href="mailto:frmcybermol@yandex.ru">frmcybermol@yandex.ru</a></span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ ЗАЯВКА ═══ -->
+<section id="join" style="padding-top:0">
+  <div class="wrap join-grid">
+    <div id="contacts">
+      <p class="eyebrow"><b>08</b> Присоединиться</p>
+      <h2 class="reveal">Найдём занятие по душе</h2>
+      <p class="lead reveal" style="margin-top:16px">Оставьте заявку — модератор проверит её и свяжется с вами. Подберём направление под интересы: спорт, волонтёрство, музыка и не только.</p>
+      <div class="contacts reveal">
+        <a href="mailto:frmcybermol@yandex.ru"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>frmcybermol@yandex.ru</a>
+        <a href="tel:+79264129010"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.8 19.8 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.12 4.18 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.72c.13.9.36 1.78.7 2.63a2 2 0 0 1-.45 2.11L8.1 9.9a16 16 0 0 0 6 6l1.44-1.25a2 2 0 0 1 2.11-.45c.85.34 1.73.57 2.63.7A2 2 0 0 1 22 16.92z"/></svg>+7 (926) 412-90-10</a>
+        <div><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-6.3-7-11a7 7 0 0 1 14 0c0 4.7-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg>Москва, Капотня, 5-й квартал, д. 26</div>
+      </div>
+    </div>
+    <form class="form reveal" id="joinForm">
+      <div class="field"><label for="f-name">Имя и фамилия</label><input id="f-name" name="name" type="text" placeholder="Иван Иванов" autocomplete="name" required /></div>
+      <div class="field"><label for="f-phone">Телефон</label><input id="f-phone" name="phone" type="tel" placeholder="+7 (___) ___-__-__" autocomplete="tel" required /></div>
+      <div class="field"><label for="f-interest">Что интересно</label>
+        <select id="f-interest" name="interest">
+          <option>Спорт и бокс</option><option>Волонтёрство</option><option>Патриотические проекты</option>
+          <option>Психологическая помощь</option><option>Музыкальное искусство</option><option>Досуг и мероприятия</option><option>Другое</option>
+        </select>
+      </div>
+      <div class="field"><label for="f-msg">Сообщение</label><textarea id="f-msg" name="message" rows="3" placeholder="Пара слов о себе"></textarea></div>
+      <button type="submit" class="btn btn-red" style="width:100%">Отправить заявку</button>
+      <p class="note">Отправку заявок на почту подключим при размещении сайта. Сейчас кнопка откроет ваш почтовый клиент с заполненным письмом.</p>
+    </form>
+  </div>
+</section>
+
+<!-- ═══ ДОКУМЕНТЫ ═══ -->
+<section id="docs" class="docs">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="eyebrow"><b>09</b> Открытость</p>
+      <h2 class="reveal">Документы</h2>
+      <p class="lead reveal" style="margin-top:16px">Учредительные и регистрационные документы организации, реквизиты — открыто и в одном месте.</p>
+    </div>
+    <div class="docs-grid">
+      <!-- TODO: добавьте атрибут data-file="docs/inn.pdf" когда файлы будут готовы -->
+      <a class="doc reveal" href="#" aria-label="Свидетельство ИНН">
+        <span class="di"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5"/><path d="M9 13h6M9 17h4"/></svg></span>
+        <span class="dt"><h4>Свидетельство ИНН</h4><span>Налоговый учёт · PDF</span></span>
+        <span class="dl"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v11m0 0 4-4m-4 4-4-4M5 20h14"/></svg></span>
+      </a>
+      <a class="doc reveal" href="#" aria-label="Лист записи ЕГРЮЛ">
+        <span class="di"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5"/><path d="M9 13h6M9 17h4"/></svg></span>
+        <span class="dt"><h4>Лист записи ЕГРЮЛ</h4><span>Регистрация · ОГРН</span></span>
+        <span class="dl"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v11m0 0 4-4m-4 4-4-4M5 20h14"/></svg></span>
+      </a>
+      <a class="doc reveal" href="#" aria-label="Устав организации">
+        <span class="di"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5"/><path d="M9 13h6M9 17h4"/></svg></span>
+        <span class="dt"><h4>Устав организации</h4><span>Учредительный документ · PDF</span></span>
+        <span class="dl"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v11m0 0 4-4m-4 4-4-4M5 20h14"/></svg></span>
+      </a>
+      <a class="doc reveal" href="#" aria-label="Реквизиты организации">
+        <span class="di"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5"/><path d="M9 13h6M9 17h4"/></svg></span>
+        <span class="dt"><h4>Реквизиты</h4><span>Для партнёров и пожертвований</span></span>
+        <span class="dl"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v11m0 0 4-4m-4 4-4-4M5 20h14"/></svg></span>
+      </a>
+    </div>
+    <p style="font-size:13px; color:var(--faint); margin-top:18px">Файлы документов подключим по мере готовности — место в разделе уже готово.</p>
+  </div>
+</section>
+</main>
+
+<!-- ═══ ПОДВАЛ ═══ -->
+<footer>
+  <div class="wrap">
+    <div class="foot">
+      <div class="foot-col" style="max-width:320px">
+        <div class="foot-brand"><img src="assets/logo-mark-white.png" alt="Кибермол" />КИБЕРМОЛ</div>
+        <p style="margin-top:14px; font-size:14px">Здоровая молодёжь — сильная Россия. Молодёжное движение, Москва. АНО ФРМ «Кибермол», основано в 2022 году.</p>
+      </div>
+      <div class="foot-col">
+        <strong>Разделы</strong>
+        <a href="#about">О движении</a><a href="#directions">Направления</a><a href="#events">Мероприятия</a>
+        <a href="#awards">Награды</a><a href="#team">Команда</a><a href="#docs">Документы</a><a href="#support">Поддержать</a>
+      </div>
+      <div class="foot-col">
+        <strong>Контакты</strong>
+        <a href="mailto:frmcybermol@yandex.ru">frmcybermol@yandex.ru</a>
+        <a href="tel:+79264129010">+7 (926) 412-90-10</a>
+        <span>Москва, Капотня,<br />5-й квартал, д. 26</span>
+      </div>
+    </div>
+    <div class="studio">
+      <img src="assets/studio-symbol.png" alt="Студия звукозаписи Sam Bruev" />
+      <div class="s1">Честное искусство — сильная страна</div>
+      <div class="s2">Студия звукозаписи «Sam Bruev» · Москва, Капотня · разработка сайта</div>
+    </div>
+    <div class="copyright">© <span id="year"></span> АНО ФРМ «Кибермол» — молодёжное движение</div>
+  </div>
+</footer>
+
+<div class="toast" id="toast" role="status"></div>
+
+<!-- ═══ ЛАЙТБОКС НАГРАД ═══ -->
+<div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Просмотр награды">
+  <button class="lb-btn lb-close" aria-label="Закрыть">&times;</button>
+  <button class="lb-btn lb-prev" aria-label="Предыдущая">&#8249;</button>
+  <button class="lb-btn lb-next" aria-label="Следующая">&#8250;</button>
+  <img src="" alt="Награда движения «Кибермол»" />
+  <div class="lb-count" id="lbCount"></div>
+</div>
+
+<script>
+/* ════════════════════════════════════════════════════════════
+   НАСТРОЙКИ — заполните по мере готовности (TODO)
+   ════════════════════════════════════════════════════════════ */
+var VK_GROUP_ID  = null;   // TODO: числовой ID группы ВКонтакте
+var VK_GROUP_URL = "";     // TODO: https://vk.com/...
+var MAX_URL      = "";     // TODO: ссылка на сообщество в MAX
+var DONATE_URL   = "";     // TODO: ссылка для пожертвований
+
+document.getElementById('year').textContent = new Date().getFullYear();
+var REDUCE = window.matchMedia && matchMedia('(prefers-reduced-motion:reduce)').matches;
+
+/* ── Заставка: один раз за визит, клик пропускает ── */
+(function(){
+  var intro = document.getElementById('intro');
+  function ready(){ document.body.classList.add('ready'); }
+  if(!intro){ ready(); return; }
+  var seen = false;
+  try{ seen = sessionStorage.getItem('cm_intro') === '1'; }catch(e){}
+  if(REDUCE || seen){ intro.remove(); ready(); return; }
+  try{ sessionStorage.setItem('cm_intro','1'); }catch(e){}
+  function dismiss(){
+    if(!intro) return;
+    intro.classList.add('gone'); ready();
+    intro.addEventListener('animationend', function(e){
+      if(e.animationName === 'introOut' && intro){ intro.remove(); intro = null; }
+    });
+  }
+  intro.addEventListener('click', dismiss);
+  setTimeout(dismiss, 2200);
+})();
+
+/* ── Бегущая строка ── */
+(function(){
+  var t = document.getElementById('tickerTrack'); if(!t) return;
+  var words = ['Спорт','Команда','Забота','Родина'], s = '';
+  for(var k=0;k<6;k++){ for(var i=0;i<words.length;i++){ s += '<span>'+words[i]+'</span><i>●</i>'; } }
+  t.innerHTML = s;
+})();
+
+/* ── Награды и партнёры: содержимое каруселей ── */
+(function(){
+  var AW = [1,2,3,4,5,6,7,8,9,10,11,12,13,15,16,17,18,19];
+  var g = document.getElementById('gallery');
+  if(g){
+    var a = '';
+    for(var m=0;m<2;m++){
+      for(var j=0;j<AW.length;j++){
+        var n = AW[j], nn = (n<10?'0':'')+n;
+        a += '<figure class="aw-fig"'+(m?' aria-hidden="true"':'')+' data-i="'+j+'"><img loading="lazy" src="assets/award-'+nn+'.jpg" alt="Награда движения «Кибермол» №'+n+'"></figure>';
+      }
+    }
+    g.innerHTML = a;
+  }
+  var P = [['partner-avanta.png','Аванта Моторс'],['partner-aquaelite.png','Aqua Elite'],['partner-alekcandrina.png','Alekcandrina'],['partner-sambruev.png','Sam Bruev']];
+  var pt = document.getElementById('partnersTrack');
+  if(pt){
+    var s = '';
+    for(var k=0;k<4;k++){ for(var i=0;i<P.length;i++){
+      s += '<div class="partner"'+(k?' aria-hidden="true"':'')+'><img loading="lazy" src="assets/'+P[i][0]+'" alt="'+(k?'':P[i][1])+'"></div>';
+    } }
+    pt.innerHTML = s;
+  }
+})();
+
+/* ── Карусели: авто-движение + перетаскивание ── */
+(function(){
+  document.querySelectorAll('.marquee').forEach(function(m){
+    var track = m.querySelector('.m-track'); if(!track) return;
+    var base = REDUCE ? 0 : (parseFloat(m.getAttribute('data-speed')) || 0.7);
+    var off = 0, half = 0, vel = 0, dragging = false, lastX = 0, moved = 0;
+    function measure(){ half = track.scrollWidth / 2; }
+    measure(); window.addEventListener('load', measure); window.addEventListener('resize', measure);
+    (function frame(){
+      if(half > 0){
+        if(!dragging){ off += base + vel; vel *= 0.92; if(Math.abs(vel) < 0.02) vel = 0; }
+        if(off >= half) off -= half; if(off < 0) off += half;
+        track.style.transform = 'translate3d(' + (-off).toFixed(2) + 'px,0,0)';
+      }
+      requestAnimationFrame(frame);
+    })();
+    m.addEventListener('pointerdown', function(e){ dragging = true; moved = 0; lastX = e.clientX; vel = 0; });
+    window.addEventListener('pointermove', function(e){
+      if(!dragging) return;
+      var dx = e.clientX - lastX; off -= dx; vel = -dx * 0.5; lastX = e.clientX; moved += Math.abs(dx);
+    });
+    window.addEventListener('pointerup', function(){ dragging = false; });
+    m.addEventListener('pointercancel', function(){ dragging = false; });
+    m.addEventListener('click', function(e){ if(moved > 6){ e.stopPropagation(); e.preventDefault(); } }, true);
+  });
+})();
+
+/* ── Лайтбокс наград: клик, стрелки, счётчик ── */
+(function(){
+  var lb = document.getElementById('lightbox'); if(!lb) return;
+  var img = lb.querySelector('img'), count = document.getElementById('lbCount');
+  var AW = [1,2,3,4,5,6,7,8,9,10,11,12,13,15,16,17,18,19], cur = 0;
+  function src(i){ var n = AW[i]; return 'assets/award-' + (n<10?'0':'') + n + '.jpg'; }
+  function show(i){
+    cur = (i + AW.length) % AW.length;
+    img.src = src(cur);
+    count.textContent = (cur+1) + ' / ' + AW.length;
+  }
+  document.getElementById('gallery').addEventListener('click', function(e){
+    var f = e.target.closest('.aw-fig'); if(!f) return;
+    show(parseInt(f.getAttribute('data-i'),10) || 0);
+    lb.classList.add('open');
+  });
+  function close(){ lb.classList.remove('open'); img.src = ''; }
+  lb.addEventListener('click', function(e){ if(e.target === lb || e.target === img) close(); });
+  lb.querySelector('.lb-close').addEventListener('click', close);
+  lb.querySelector('.lb-prev').addEventListener('click', function(){ show(cur-1); });
+  lb.querySelector('.lb-next').addEventListener('click', function(){ show(cur+1); });
+  document.addEventListener('keydown', function(e){
+    if(!lb.classList.contains('open')) return;
+    if(e.key === 'Escape') close();
+    if(e.key === 'ArrowLeft') show(cur-1);
+    if(e.key === 'ArrowRight') show(cur+1);
+  });
+})();
+
+/* ── Ссылки: пожертвование, ВК, MAX ── */
+(function(){
+  if(DONATE_URL) document.getElementById('donate').href = DONATE_URL;
+  if(VK_GROUP_URL) document.getElementById('vk-link').href = VK_GROUP_URL;
+  if(MAX_URL) document.getElementById('max-link').href = MAX_URL;
+  window.addEventListener('load', function(){
+    if(VK_GROUP_ID && window.VK && VK.Widgets && VK.Widgets.Group){
+      document.getElementById('vk_fallback').style.display = 'none';
+      VK.Widgets.Group("vk_groups", {mode:4, width:"auto", height:"560", color1:'FFFFFF', color2:'16171B', color3:'D92030'}, VK_GROUP_ID);
+    }
+  });
+})();
+
+/* ── Заявка → почтовый клиент (временно, до подключения формы) ── */
+document.getElementById('joinForm').addEventListener('submit', function(e){
+  e.preventDefault(); var f = e.target;
+  var s = encodeURIComponent('Заявка на участие — Кибермол');
+  var b = encodeURIComponent('Имя: ' + f.name.value + '\nТелефон: ' + f.phone.value + '\nИнтерес: ' + f.interest.value + '\nСообщение: ' + f.message.value);
+  window.location.href = 'mailto:frmcybermol@yandex.ru?subject=' + s + '&body=' + b;
+});
+
+/* ── Появление блоков при прокрутке + счётчики чисел ── */
+(function(){
+  if(!('IntersectionObserver' in window) || REDUCE){
+    document.querySelectorAll('.reveal').forEach(function(el){ el.classList.add('in'); });
+    return;
+  }
+  var io = new IntersectionObserver(function(es){
+    es.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
+  }, {threshold:0.12, rootMargin:'0px 0px -50px 0px'});
+  document.querySelectorAll('.reveal').forEach(function(el,i){
+    el.style.transitionDelay = (Math.min(i % 3, 2) * 60) + 'ms'; io.observe(el);
+  });
+  var sio = new IntersectionObserver(function(es){
+    es.forEach(function(e){ if(e.isIntersecting){ up(e.target); sio.unobserve(e.target); } });
+  }, {threshold:0.5});
+  document.querySelectorAll('.hstat .num, .chip .cnum').forEach(function(s){ sio.observe(s); });
+  function up(el){
+    var node = el.querySelector('b') || el, raw = node.textContent.trim(), m = raw.match(/\d[\d\s]*/); if(!m) return;
+    var t = parseInt(m[0].replace(/\s/g,''),10), pre = raw.slice(0,m.index), suf = raw.slice(m.index + m[0].length), st = null, d = 900;
+    function step(ts){
+      if(!st) st = ts;
+      var p = Math.min((ts-st)/d, 1), e2 = 1 - Math.pow(1-p, 3);
+      node.textContent = pre + Math.floor(e2*t) + suf;
+      if(p < 1) requestAnimationFrame(step); else node.textContent = pre + t + suf;
+    }
+    node.textContent = pre + '0' + suf; requestAnimationFrame(step);
+  }
+})();
+
+/* ── Прогресс прокрутки + шапка + активный пункт меню ── */
+(function(){
+  var bar = document.getElementById('scrollbar'), head = document.getElementById('header'), tick = false;
+  function upd(){
+    var y = window.pageYOffset || document.documentElement.scrollTop;
+    var h = document.documentElement.scrollHeight - window.innerHeight;
+    if(bar) bar.style.width = (h > 0 ? (y/h*100) : 0) + '%';
+    if(head) head.classList.toggle('scrolled', y > 10);
+    tick = false;
+  }
+  window.addEventListener('scroll', function(){ if(!tick){ requestAnimationFrame(upd); tick = true; } }, {passive:true});
+  window.addEventListener('resize', upd, {passive:true}); upd();
+
+  var links = Array.prototype.slice.call(document.querySelectorAll('.menu > a[href^="#"]'));
+  var map = {};
+  links.forEach(function(a){ var id = a.getAttribute('href').slice(1), s = document.getElementById(id); if(s) map[id] = a; });
+  if('IntersectionObserver' in window){
+    var spy = new IntersectionObserver(function(es){
+      es.forEach(function(e){
+        if(e.isIntersecting){
+          links.forEach(function(a){ a.classList.remove('active'); });
+          var a = map[e.target.id]; if(a) a.classList.add('active');
+        }
+      });
+    }, {rootMargin:'-40% 0px -55% 0px'});
+    Object.keys(map).forEach(function(id){ spy.observe(document.getElementById(id)); });
+  }
+})();
+
+/* ── Мобильное меню ── */
+(function(){
+  var burger = document.getElementById('burger');
+  burger.addEventListener('click', function(){
+    var open = document.body.classList.toggle('nav-open');
+    burger.setAttribute('aria-expanded', open ? 'true' : 'false');
+    burger.setAttribute('aria-label', open ? 'Закрыть меню' : 'Открыть меню');
+  });
+  document.querySelectorAll('.menu > a').forEach(function(a){
+    a.addEventListener('click', function(){
+      document.body.classList.remove('nav-open');
+      burger.setAttribute('aria-expanded','false');
+    });
+  });
+})();
+
+/* ── Документы: открыть файл или показать уведомление ── */
+(function(){
+  var toast = document.getElementById('toast'), tt;
+  function show(m){
+    if(!toast) return;
+    toast.textContent = m; toast.classList.add('show');
+    clearTimeout(tt); tt = setTimeout(function(){ toast.classList.remove('show'); }, 2600);
+  }
+  document.querySelectorAll('.doc').forEach(function(a){
+    a.addEventListener('click', function(e){
+      e.preventDefault();
+      var f = a.getAttribute('data-file');
+      if(f){ window.open(f, '_blank', 'noopener'); } else { show('Документ скоро будет доступен'); }
+    });
+  });
+})();
+</script>
+</body>
+</html>
