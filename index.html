@@ -285,7 +285,7 @@
   .bcard.b-lg::before{ content:''; position:absolute; right:-24px; top:-30px; width:min(300px,50%); aspect-ratio:910/993;
     background:url(assets/logo-mark.png) center/contain no-repeat; opacity:.045; transform:rotate(9deg); pointer-events:none; }
   .bcard.b-wide{ grid-column:span 12; display:flex; align-items:center; gap:30px; }
-  .bcard.b-wide .ic{ flex:none; width:72px; height:72px; margin:0; background:var(--bg-2); }
+  .bcard.b-wide .ic{ flex:none; width:72px; height:72px; margin:0; background:#101114; }
   .bcard.b-wide h3{ margin-bottom:8px; }
 
   /* ══════════════ 8. МЕРОПРИЯТИЯ / VK ══════════════ */
@@ -340,10 +340,10 @@
 
   /* ══════════════ 11. ПАРТНЁРЫ ══════════════ */
   .partners{ background:var(--bg-2); border-block:1px solid var(--line); }
-  .partner{ flex:none; height:104px; min-width:180px; margin-right:18px; background:#fff;
-    border:1px solid var(--line); border-radius:16px; display:flex; align-items:center; justify-content:center;
-    padding:0 36px; box-shadow:var(--shadow-sm); transition:box-shadow .3s, transform .25s var(--ease); }
-  .partner:hover{ transform:translateY(-3px); box-shadow:var(--shadow); }
+  .partner{ flex:none; height:104px; min-width:180px; margin-right:18px; background:#101114;
+    border:1px solid rgba(255,255,255,.08); border-radius:16px; display:flex; align-items:center; justify-content:center;
+    padding:0 36px; box-shadow:var(--shadow-sm); transition:box-shadow .3s, transform .25s var(--ease), border-color .3s; }
+  .partner:hover{ transform:translateY(-3px); box-shadow:var(--shadow); border-color:rgba(255,255,255,.22); }
   .partner img{ height:56px; width:auto; max-width:300px; object-fit:contain; }
 
   /* ══════════════ 12. ОТЗЫВЫ ══════════════ */
@@ -973,7 +973,7 @@ var REDUCE = window.matchMedia && matchMedia('(prefers-reduced-motion:reduce)').
     }
     g.innerHTML = a;
   }
-  var P = [['partner-avanta.png','Аванта Моторс'],['partner-aquaelite.png','Aqua Elite'],['partner-alekcandrina.png','Alekcandrina'],['partner-sambruev.png','Sam Bruev']];
+  var P = [['partner-avanta-dark.png','Аванта Моторс'],['partner-aquaelite-dark.png','Aqua Elite'],['partner-alekcandrina-dark.png','Alekcandrina'],['partner-sambruev-dark.png','Sam Bruev']];
   var pt = document.getElementById('partnersTrack');
   if(pt){
     var s = '';
