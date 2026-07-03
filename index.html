@@ -132,14 +132,11 @@
   #intro{ position:fixed; inset:0; z-index:300; background:var(--bg); display:grid; place-items:center; cursor:pointer; }
   #intro.gone{ animation:introOut .6s var(--ease) forwards; }
   #intro .in-wrap{ text-align:center; padding:24px; }
-  #intro img{ width:min(140px,36vw); margin:0 auto; animation:introLogo 1s var(--ease) both; }
-  #intro .in-name{ margin-top:22px; font-family:var(--font-d); font-weight:900; letter-spacing:.14em;
-    font-size:clamp(17px,4.2vw,22px); opacity:0; animation:introUp .6s ease .4s forwards; }
-  #intro .in-slogan{ margin-top:8px; color:var(--mut); font-size:clamp(14px,3.4vw,16px); font-weight:500;
-    opacity:0; animation:introUp .6s ease .6s forwards; }
-  #intro .in-slogan b{ color:var(--red); font-weight:700; }
-  #intro .in-line{ width:0; height:2px; background:var(--red); margin:20px auto 0; border-radius:2px; animation:introLine .9s var(--ease) .75s forwards; }
-  @keyframes introLogo{ 0%{ opacity:0; transform:scale(.72); } 100%{ opacity:1; transform:scale(1); } }
+  #intro img{ width:min(220px,54vw); margin:0 auto; animation:introLogo 1.1s var(--ease) both; }
+  #intro .in-org{ margin-top:18px; color:var(--faint); font-size:11px; font-weight:600; letter-spacing:.22em; text-transform:uppercase;
+    opacity:0; animation:introUp .6s ease .55s forwards; }
+  #intro .in-line{ width:0; height:2px; background:var(--red); margin:16px auto 0; border-radius:2px; animation:introLine .9s var(--ease) .7s forwards; }
+  @keyframes introLogo{ 0%{ opacity:0; transform:scale(.85) translateY(8px); } 100%{ opacity:1; transform:scale(1) translateY(0); } }
   @keyframes introUp{ from{ opacity:0; transform:translateY(12px); } to{ opacity:1; transform:none; } }
   @keyframes introLine{ to{ width:min(200px,48vw); } }
   @keyframes introOut{ to{ opacity:0; visibility:hidden; } }
@@ -334,9 +331,12 @@
   .mcard h3{ margin-bottom:4px; }
   .mcard .role{ color:var(--faint); font-weight:600; font-size:13px; margin-bottom:12px; }
   .mcard p{ font-size:15px; }
-  .mcard-sub .ava{ width:96px; height:96px; border-radius:20px; font-size:26px; }
-  .mcard-sub{ display:flex; flex-direction:column; gap:20px; justify-content:center; }
-  .mcard-sub .top{ display:flex; align-items:center; gap:20px; }
+  .mcard-sub{ padding:0; overflow:hidden; display:flex; flex-direction:column; }
+  .mcard-sub .photo{ width:100%; height:250px; overflow:hidden; flex:none; }
+  .mcard-sub .photo img{ width:100%; height:100%; object-fit:cover; object-position:center 20%;
+    transition:transform .6s var(--ease); }
+  .mcard-sub:hover .photo img{ transform:scale(1.04); }
+  .mcard-sub .info{ padding:24px 28px 28px; flex:1; display:flex; flex-direction:column; justify-content:center; }
 
   /* ══════════════ 11. ПАРТНЁРЫ ══════════════ */
   .partners{ background:var(--bg-2); border-block:1px solid var(--line); }
@@ -503,7 +503,9 @@
     .bcard.b-wide{ flex-direction:column; align-items:flex-start; gap:18px; }
     .mcard{ padding:26px; }
     .mcard-lead{ grid-template-columns:1fr; justify-items:center; text-align:center; gap:22px; }
-    .mcard-sub .top{ flex-direction:column; text-align:center; }
+    .mcard-sub{ padding:0; }
+    .mcard-sub .photo{ height:280px; }
+    .mcard-sub .info{ padding:22px 24px 26px; }
     .form{ padding:24px; }
     .docs-grid{ grid-template-columns:1fr; }
     .foot{ grid-template-columns:1fr; gap:32px; }
@@ -520,9 +522,8 @@
 <!-- ═══ ЗАСТАВКА (показывается один раз за визит) ═══ -->
 <div id="intro" role="button" aria-label="Пропустить заставку">
   <div class="in-wrap">
-    <img src="assets/logo-mark.png" alt="" />
-    <div class="in-name">АНО ФРМ «КИБЕРМОЛ»</div>
-    <div class="in-slogan">Здоровая молодёжь — <b>сильная Россия</b></div>
+    <img src="assets/logo.png" alt="КИБЕРМОЛ — здоровая молодёжь, сильная Россия" />
+    <div class="in-org">Автономная некоммерческая организация · Москва</div>
     <div class="in-line"></div>
   </div>
 </div>
@@ -532,7 +533,7 @@
   <div class="wrap">
     <nav class="nav" aria-label="Основная навигация">
       <a class="logo" href="#top" aria-label="Кибермол — на главную">
-        <img src="assets/logo-mark.png" alt="Логотип «Кибермол»" />
+        <img src="assets/logo-mark-red.png" alt="Логотип «Кибермол»" />
         <span class="logo-txt">КИБЕРМОЛ<small>Москва · Капотня · 5/26</small></span>
       </a>
       <div class="menu" id="menu">
@@ -739,15 +740,13 @@
         </div>
       </div>
       <div class="mcard mcard-sub reveal">
-        <div class="top">
-          <div class="ava"><img src="assets/avatar-bruev.jpg" alt="Бруев Семён Сергеевич" /></div>
-          <div>
-            <span class="badge">Партнёр · наставник</span>
-            <h3 style="font-size:19px">Бруев Семён Сергеевич</h3>
-            <div class="role">Музыкальный звукорежиссёр, выпускник ИСИ</div>
-          </div>
+        <div class="photo"><img src="assets/mentor-bruev-full.jpg" alt="Бруев Семён Сергеевич в студии звукозаписи" loading="lazy" /></div>
+        <div class="info">
+          <div><span class="badge">Партнёр · наставник</span></div>
+          <h3 style="font-size:19px">Бруев Семён Сергеевич</h3>
+          <div class="role">Музыкальный звукорежиссёр, выпускник ИСИ</div>
+          <p>Проводит мастер-классы по музыкальному искусству в учебных заведениях и на площадках по всей России — от Хакасии до Санкт-Петербурга. Отмечен благодарностью главы района Капотня.</p>
         </div>
-        <p>Проводит мастер-классы по музыкальному искусству в учебных заведениях и на площадках по всей России — от Хакасии до Санкт-Петербурга. Отмечен благодарностью главы района Капотня.</p>
       </div>
     </div>
   </div>
