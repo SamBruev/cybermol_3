@@ -335,7 +335,7 @@
   .mcard-main,.mcard-sub{ padding:0; overflow:hidden; display:grid; align-items:stretch; }
   .mcard-main{ grid-template-columns:290px 1fr; }
   .mcard-sub{ grid-template-columns:190px 1fr; }
-  .mcard-main .photo,.mcard-sub .photo{ position:relative; min-height:360px; overflow:hidden; background:#F3F2EE; }
+  .mcard-main .photo,.mcard-sub .photo{ position:relative; min-height:360px; overflow:hidden; background:#F3F2EE; cursor:zoom-in; }
   .mcard-main .photo img,.mcard-sub .photo img{ position:absolute; inset:0; width:100%; height:100%;
     object-fit:cover; transition:transform .6s var(--ease); }
   .mcard-main .photo img{ object-position:center 12%; }
@@ -737,7 +737,7 @@
     </div>
     <div class="team-grid">
       <div class="mcard mcard-main reveal">
-        <div class="photo"><img src="assets/mentor-fomin.jpg" alt="Фомин Алексей Анатольевич — директор движения «Кибермол»" loading="lazy" /></div>
+        <div class="photo" data-gal="fomin" title="Открыть фото"><img src="assets/mentor-fomin.jpg" alt="Фомин Алексей Анатольевич — директор движения «Кибермол»" loading="lazy" /></div>
         <div class="info">
           <span class="badge">Директор движения</span>
           <h3>Фомин Алексей Анатольевич</h3>
@@ -746,7 +746,7 @@
         </div>
       </div>
       <div class="mcard mcard-sub reveal">
-        <div class="photo"><img src="assets/mentor-bruev-studio.jpg" alt="Бруев Семён Сергеевич в студии звукозаписи" loading="lazy" /></div>
+        <div class="photo" data-gal="bruev" title="Открыть фото"><img src="assets/mentor-bruev-studio.jpg" alt="Бруев Семён Сергеевич в студии звукозаписи" loading="lazy" /></div>
         <div class="info">
           <span class="badge">Партнёр · наставник</span>
           <h3 style="font-size:19px">Бруев Семён Сергеевич</h3>
@@ -1017,27 +1017,46 @@ var REDUCE = window.matchMedia && matchMedia('(prefers-reduced-motion:reduce)').
   });
 })();
 
-/* ── Лайтбокс наград: клик, стрелки, счётчик ── */
+/* ── Лайтбокс: награды + фото наставников (клик, стрелки, счётчик) ── */
 (function(){
   var lb = document.getElementById('lightbox'); if(!lb) return;
   var img = lb.querySelector('img'), count = document.getElementById('lbCount');
-  var AW = [1,2,3,4,5,6,7,8,9,10,11,12,13,15,16,17,18,19], cur = 0;
-  function src(i){ var n = AW[i]; return 'assets/award-' + (n<10?'0':'') + n + '.jpg'; }
+  var prev = lb.querySelector('.lb-prev'), next = lb.querySelector('.lb-next');
+  var AW = [1,2,3,4,5,6,7,8,9,10,11,12,13,15,16,17,18,19].map(function(n){
+    return 'assets/award-' + (n<10?'0':'') + n + '.jpg';
+  });
+  /* Галереи наставников — добавляйте новые фото сюда (файлы кладите в assets/) */
+  var GAL = {
+    awards: AW,
+    fomin:  ['assets/mentor-fomin.jpg'],
+    bruev:  ['assets/mentor-bruev-studio.jpg','assets/mentor-bruev-full.jpg','assets/avatar-bruev.jpg']
+  };
+  var list = AW, cur = 0;
   function show(i){
-    cur = (i + AW.length) % AW.length;
-    img.src = src(cur);
-    count.textContent = (cur+1) + ' / ' + AW.length;
+    cur = (i + list.length) % list.length;
+    img.src = list[cur];
+    count.textContent = (cur+1) + ' / ' + list.length;
+    var many = list.length > 1;
+    if(prev) prev.style.display = many ? '' : 'none';
+    if(next) next.style.display = many ? '' : 'none';
+    count.style.display = many ? '' : 'none';
   }
+  function openGal(l, i){ list = l; show(i || 0); lb.classList.add('open'); }
   document.getElementById('gallery').addEventListener('click', function(e){
     var f = e.target.closest('.aw-fig'); if(!f) return;
-    show(parseInt(f.getAttribute('data-i'),10) || 0);
-    lb.classList.add('open');
+    openGal(GAL.awards, parseInt(f.getAttribute('data-i'),10) || 0);
+  });
+  document.querySelectorAll('[data-gal]').forEach(function(el){
+    el.addEventListener('click', function(){
+      var l = GAL[el.getAttribute('data-gal')];
+      if(l && l.length) openGal(l, 0);
+    });
   });
   function close(){ lb.classList.remove('open'); img.src = ''; }
   lb.addEventListener('click', function(e){ if(e.target === lb || e.target === img) close(); });
   lb.querySelector('.lb-close').addEventListener('click', close);
-  lb.querySelector('.lb-prev').addEventListener('click', function(){ show(cur-1); });
-  lb.querySelector('.lb-next').addEventListener('click', function(){ show(cur+1); });
+  prev.addEventListener('click', function(){ show(cur-1); });
+  next.addEventListener('click', function(){ show(cur+1); });
   document.addEventListener('keydown', function(e){
     if(!lb.classList.contains('open')) return;
     if(e.key === 'Escape') close();
