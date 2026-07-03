@@ -331,18 +331,18 @@
   .mcard h3{ margin-bottom:4px; }
   .mcard .role{ color:var(--faint); font-weight:600; font-size:13px; margin-bottom:12px; }
   .mcard p{ font-size:15px; }
-  /* Крупная карточка директора — фото сверху */
-  .mcard-main{ padding:0; overflow:hidden; display:flex; flex-direction:column; }
-  .mcard-main .photo{ width:100%; height:320px; overflow:hidden; flex:none; background:#F3F2EE; }
-  .mcard-main .photo img{ width:100%; height:100%; object-fit:cover; object-position:center 16%;
-    transition:transform .6s var(--ease); }
-  .mcard-main:hover .photo img{ transform:scale(1.03); }
-  .mcard-main .info{ padding:28px 32px 32px; flex:1; }
-  /* Компактная карточка наставника */
-  .mcard-sub{ display:flex; flex-direction:column; gap:20px; justify-content:center; }
-  .mcard-sub .top{ display:flex; align-items:center; gap:20px; }
-  .mcard-sub .ava{ width:96px; height:96px; border-radius:20px; flex:none; }
-  .mcard-sub .ava img{ object-position:38% 18%; }
+  /* Карточки команды: фото слева на всю высоту + текст */
+  .mcard-main,.mcard-sub{ padding:0; overflow:hidden; display:grid; align-items:stretch; }
+  .mcard-main{ grid-template-columns:290px 1fr; }
+  .mcard-sub{ grid-template-columns:190px 1fr; }
+  .mcard-main .photo,.mcard-sub .photo{ position:relative; min-height:360px; overflow:hidden; background:#F3F2EE; }
+  .mcard-main .photo img,.mcard-sub .photo img{ position:absolute; inset:0; width:100%; height:100%;
+    object-fit:cover; transition:transform .6s var(--ease); }
+  .mcard-main .photo img{ object-position:center 12%; }
+  .mcard-sub .photo img{ object-position:44% 20%; }
+  .mcard-main:hover .photo img,.mcard-sub:hover .photo img{ transform:scale(1.03); }
+  .mcard-main .info{ padding:30px 34px; align-self:center; }
+  .mcard-sub .info{ padding:26px 28px; align-self:center; }
 
   /* ══════════════ 11. ПАРТНЁРЫ ══════════════ */
   .partners{ background:var(--bg-2); border-block:1px solid var(--line); }
@@ -508,10 +508,12 @@
     .bcard{ padding:24px; }
     .bcard.b-wide{ flex-direction:column; align-items:flex-start; gap:18px; }
     .mcard{ padding:26px; }
-    .mcard-main{ padding:0; }
-    .mcard-main .photo{ height:280px; }
-    .mcard-main .info{ padding:22px 24px 26px; }
-    .mcard-sub .top{ flex-direction:row; }
+    .mcard-main,.mcard-sub{ padding:0; grid-template-columns:1fr; }
+    .mcard-main .photo,.mcard-sub .photo{ min-height:0; height:300px; position:relative; }
+    .mcard-sub .photo{ height:240px; }
+    .mcard-main .photo img{ object-position:center 10%; }
+    .mcard-sub .photo img{ object-position:center 24%; }
+    .mcard-main .info,.mcard-sub .info{ padding:22px 24px 26px; }
     .form{ padding:24px; }
     .docs-grid{ grid-template-columns:1fr; }
     .foot{ grid-template-columns:1fr; gap:32px; }
@@ -744,15 +746,13 @@
         </div>
       </div>
       <div class="mcard mcard-sub reveal">
-        <div class="top">
-          <div class="ava"><img src="assets/mentor-bruev-studio.jpg" alt="Бруев Семён Сергеевич" loading="lazy" /></div>
-          <div>
-            <span class="badge">Партнёр · наставник</span>
-            <h3 style="font-size:19px">Бруев Семён Сергеевич</h3>
-            <div class="role">Музыкальный звукорежиссёр, выпускник ИСИ</div>
-          </div>
+        <div class="photo"><img src="assets/mentor-bruev-studio.jpg" alt="Бруев Семён Сергеевич в студии звукозаписи" loading="lazy" /></div>
+        <div class="info">
+          <span class="badge">Партнёр · наставник</span>
+          <h3 style="font-size:19px">Бруев Семён Сергеевич</h3>
+          <div class="role">Музыкальный звукорежиссёр, выпускник ИСИ</div>
+          <p>Проводит мастер-классы по музыкальному искусству в учебных заведениях и на площадках по всей России. Отмечен благодарностью главы района Капотня.</p>
         </div>
-        <p>Проводит мастер-классы по музыкальному искусству в учебных заведениях и на площадках по всей России — от Хакасии до Санкт-Петербурга. Отмечен благодарностью главы района Капотня.</p>
       </div>
     </div>
   </div>
