@@ -33,7 +33,7 @@
 
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Inter+Tight:wght@700;800;900&display=swap" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Inter+Tight:wght@700;800;900&family=Oswald:wght@500;600;700&display=swap" rel="stylesheet" />
 <link rel="preload" as="image" href="assets/event-team.jpg" fetchpriority="high" />
 <script src="https://vk.com/js/api/openapi.js?169" defer></script>
 
@@ -80,7 +80,7 @@
     /* Геометрия */
     --maxw:     1200px;
     --r:        22px;
-    --font-d:   'Inter Tight','Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
+    --font-d:   'Oswald','Inter Tight','Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
     --font-b:   'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
     --ease:     cubic-bezier(.2,.7,.2,1);
   }
@@ -98,9 +98,9 @@
   section{ padding:110px 0; position:relative; }
   section[id]{ scroll-margin-top:86px; }
 
-  h1,h2,h3{ font-family:var(--font-d); line-height:1.08; letter-spacing:-.022em; font-weight:800; }
+  h1,h2,h3{ font-family:var(--font-d); line-height:1.12; letter-spacing:.005em; font-weight:600; }
   h2{ font-size:clamp(30px,4.2vw,48px); }
-  h3{ font-size:20px; letter-spacing:-.012em; }
+  h3{ font-size:21px; }
   p{ color:var(--mut); }
   .lead{ font-size:clamp(16px,1.5vw,18.5px); max-width:58ch; }
 
@@ -117,7 +117,7 @@
   .btn{ display:inline-flex; align-items:center; justify-content:center; gap:10px; height:54px; padding:0 30px;
     border-radius:999px; font-weight:600; font-size:15px; cursor:pointer; border:1px solid transparent;
     transition:transform .16s var(--ease), box-shadow .25s ease, background .2s ease, border-color .2s, color .2s;
-    white-space:nowrap; will-change:transform; }
+    white-space:nowrap; will-change:transform; touch-action:manipulation; }
   .btn:active{ transform:scale(.97); }
   .btn-red{ background:var(--red); color:#fff; box-shadow:0 10px 26px rgba(217,32,48,.22); }
   .btn-red:hover{ background:var(--red-deep); transform:translateY(-2px); box-shadow:0 16px 36px rgba(217,32,48,.3); }
@@ -202,7 +202,7 @@
       radial-gradient(36% 42% at 88% 12%, rgba(255,184,76,.10), transparent 70%),
       radial-gradient(30% 36% at 72% 78%, rgba(217,32,48,.05), transparent 70%); }
   .hero-grid{ position:relative; z-index:1; display:grid; grid-template-columns:minmax(0,6.4fr) minmax(0,5.2fr); gap:56px; align-items:center; }
-  .hero h1{ font-size:clamp(40px,5.4vw,68px); font-weight:900; letter-spacing:-.03em; line-height:1.02; }
+  .hero h1{ font-size:clamp(42px,5.6vw,72px); font-weight:700; letter-spacing:.005em; line-height:1.06; }
   .hero h1 .ac{ color:var(--red); }
   .hero .lead{ margin:24px 0 34px; }
   .hero-actions{ display:flex; gap:14px; flex-wrap:wrap; }
@@ -214,7 +214,7 @@
   .hero-photo .ph img{ width:100%; height:100%; object-fit:cover; aspect-ratio:4/3.4; }
   .chip{ position:absolute; background:#fff; border:1px solid var(--line); border-radius:16px; padding:14px 18px;
     box-shadow:var(--shadow-sm); display:flex; align-items:center; gap:12px; }
-  .chip .cnum{ font-family:var(--font-d); font-weight:800; font-size:22px; letter-spacing:-.02em; line-height:1; }
+  .chip .cnum{ font-family:var(--font-d); font-weight:600; font-size:22px; line-height:1; font-variant-numeric:tabular-nums; }
   .chip .cnum b{ color:var(--red); font-weight:800; }
   .chip .clbl{ font-size:11.5px; color:var(--mut); line-height:1.3; max-width:14ch; }
   .chip-1{ left:-26px; top:26px; animation:floaty 6s ease-in-out infinite; }
@@ -232,7 +232,7 @@
   .hero-stats .row{ display:grid; grid-template-columns:repeat(4,1fr); }
   .hstat{ padding:30px 26px 34px; border-left:1px solid var(--line); }
   .hstat:first-child{ border-left:none; padding-left:0; }
-  .hstat .num{ font-family:var(--font-d); font-weight:800; font-size:clamp(26px,3vw,38px); letter-spacing:-.02em; }
+  .hstat .num{ font-family:var(--font-d); font-weight:600; font-size:clamp(26px,3vw,38px); font-variant-numeric:tabular-nums; }
   .hstat .num b{ color:var(--red); font-weight:800; }
   .hstat .lbl{ font-size:12.5px; color:var(--faint); margin-top:5px; line-height:1.45; }
 
