@@ -400,19 +400,19 @@
     box-shadow:0 0 0 3px rgba(217,32,48,.12); }
   .form .note{ font-size:12.5px; color:var(--faint); margin-top:12px; line-height:1.5; }
 
-  /* ══════════════ 15. ДОКУМЕНТЫ ══════════════ */
-  .docs{ background:var(--bg-2); border-top:1px solid var(--line); }
-  .docs-grid{ display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:14px; }
-  .doc{ display:flex; align-items:center; gap:16px; background:#fff; border:1px solid var(--line); border-radius:16px;
-    padding:20px 22px; box-shadow:var(--shadow-sm); transition:transform .2s var(--ease), border-color .3s, box-shadow .3s; cursor:pointer; }
-  .doc:hover{ transform:translateY(-3px); border-color:rgba(217,32,48,.3); box-shadow:var(--shadow); }
-  .doc:active{ transform:scale(.985); }
-  .doc .di{ width:46px; height:46px; border-radius:13px; background:var(--rose); color:var(--red); display:grid; place-items:center; flex:none; }
-  .doc .dt{ flex:1; min-width:0; }
-  .doc .dt h4{ font-size:15px; font-weight:700; }
-  .doc .dt span{ font-size:12.5px; color:var(--faint); }
-  .doc .dl{ color:var(--faint); flex:none; transition:transform .25s var(--ease), color .2s; }
-  .doc:hover .dl{ color:var(--red); transform:translateY(2px); }
+  /* ══════════════ 15. ДОКУМЕНТЫ (компактная полоса) ══════════════ */
+  .docs{ background:var(--bg-2); border-top:1px solid var(--line); padding:52px 0; }
+  .docs-bar{ display:flex; align-items:center; justify-content:space-between; gap:28px 40px; flex-wrap:wrap; }
+  .docs-bar .eyebrow{ margin-bottom:8px; }
+  .docs-bar h2{ font-size:24px; }
+  .docs-chips{ display:flex; gap:10px; flex-wrap:wrap; align-items:center; }
+  .doc{ display:inline-flex; align-items:center; gap:9px; background:#fff; border:1px solid var(--line-2); border-radius:999px;
+    padding:11px 18px; font-size:14px; font-weight:600; color:var(--ink); box-shadow:var(--shadow-sm); cursor:pointer;
+    transition:transform .18s var(--ease), border-color .25s, box-shadow .25s; }
+  .doc svg{ color:var(--red); flex:none; }
+  .doc:hover{ transform:translateY(-2px); border-color:rgba(217,32,48,.4); box-shadow:var(--shadow); }
+  .doc:active{ transform:scale(.97); }
+  .docs-note{ width:100%; font-size:12.5px; color:var(--faint); margin-top:4px; }
   .toast{ position:fixed; left:50%; bottom:28px; transform:translateX(-50%) translateY(20px); background:var(--ink); color:#fff;
     padding:13px 22px; border-radius:999px; font-size:14px; font-weight:600; box-shadow:var(--shadow);
     opacity:0; pointer-events:none; transition:opacity .3s ease, transform .3s var(--ease); z-index:150; max-width:88vw; text-align:center; }
@@ -527,7 +527,7 @@
     .mcard-sub .photo img{ object-position:center 24%; }
     .mcard-main .info,.mcard-sub .info{ padding:22px 24px 26px; }
     .form{ padding:24px; }
-    .docs-grid{ grid-template-columns:1fr; }
+    .docs{ padding:44px 0; }
     .foot{ grid-template-columns:1fr; gap:32px; }
     .support-panel::after{ right:-30%; bottom:-10%; }
     .aw-fig{ width:136px; }
@@ -861,38 +861,21 @@
   </div>
 </section>
 
-<!-- ═══ ДОКУМЕНТЫ ═══ -->
+<!-- ═══ ДОКУМЕНТЫ (компактно) ═══ -->
 <section id="docs" class="docs">
-  <div class="wrap">
-    <div class="sec-head">
+  <div class="wrap docs-bar">
+    <div>
       <p class="eyebrow"><b>09</b> Открытость</p>
-      <h2 class="reveal">Документы</h2>
-      <p class="lead reveal" style="margin-top:16px">Учредительные и регистрационные документы организации, реквизиты — открыто и в одном месте.</p>
+      <h2>Документы</h2>
     </div>
-    <div class="docs-grid">
+    <div class="docs-chips">
       <!-- TODO: добавьте атрибут data-file="docs/inn.pdf" когда файлы будут готовы -->
-      <a class="doc reveal" href="#" aria-label="Свидетельство ИНН">
-        <span class="di"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5"/><path d="M9 13h6M9 17h4"/></svg></span>
-        <span class="dt"><h4>Свидетельство ИНН</h4><span>Налоговый учёт · PDF</span></span>
-        <span class="dl"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v11m0 0 4-4m-4 4-4-4M5 20h14"/></svg></span>
-      </a>
-      <a class="doc reveal" href="#" aria-label="Лист записи ЕГРЮЛ">
-        <span class="di"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5"/><path d="M9 13h6M9 17h4"/></svg></span>
-        <span class="dt"><h4>Лист записи ЕГРЮЛ</h4><span>Регистрация · ОГРН</span></span>
-        <span class="dl"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v11m0 0 4-4m-4 4-4-4M5 20h14"/></svg></span>
-      </a>
-      <a class="doc reveal" href="#" aria-label="Устав организации">
-        <span class="di"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5"/><path d="M9 13h6M9 17h4"/></svg></span>
-        <span class="dt"><h4>Устав организации</h4><span>Учредительный документ · PDF</span></span>
-        <span class="dl"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v11m0 0 4-4m-4 4-4-4M5 20h14"/></svg></span>
-      </a>
-      <a class="doc reveal" href="#" aria-label="Реквизиты организации">
-        <span class="di"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5"/><path d="M9 13h6M9 17h4"/></svg></span>
-        <span class="dt"><h4>Реквизиты</h4><span>Для партнёров и пожертвований</span></span>
-        <span class="dl"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v11m0 0 4-4m-4 4-4-4M5 20h14"/></svg></span>
-      </a>
+      <a class="doc" href="#" aria-label="Свидетельство ИНН"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5"/></svg>Свидетельство ИНН</a>
+      <a class="doc" href="#" aria-label="Лист записи ЕГРЮЛ"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5"/></svg>Лист записи ЕГРЮЛ</a>
+      <a class="doc" href="#" aria-label="Устав организации"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5"/></svg>Устав</a>
+      <a class="doc" href="#" aria-label="Реквизиты организации"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5"/></svg>Реквизиты</a>
+      <span class="docs-note">Файлы подключим по мере готовности.</span>
     </div>
-    <p style="font-size:13px; color:var(--faint); margin-top:18px">Файлы документов подключим по мере готовности — место в разделе уже готово.</p>
   </div>
 </section>
 </main>
