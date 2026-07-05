@@ -327,6 +327,9 @@
   .mcard h3{ margin-bottom:4px; }
   .mcard .role{ color:var(--faint); font-weight:600; font-size:13px; margin-bottom:12px; }
   .mcard p{ font-size:15px; }
+  .mcard .mcard-link{ display:inline-flex; align-items:center; gap:7px; margin-top:14px; color:var(--red); font-weight:700; font-size:14px; letter-spacing:.01em; transition:gap .2s ease, color .2s ease; }
+  .mcard .mcard-link:hover{ color:var(--red-deep); gap:11px; }
+  .mcard .mcard-link svg{ flex:none; }
   /* Карточки команды: фото слева на всю высоту + текст */
   .mcard-main,.mcard-sub{ padding:0; overflow:hidden; display:grid; align-items:stretch; }
   .mcard-main{ grid-template-columns:290px 1fr; }
@@ -764,6 +767,7 @@
           <h3 style="font-size:19px">Бруев Семён Сергеевич</h3>
           <div class="role">Музыкальный звукорежиссёр · высшее профильное образование (ИСИ, 2018) · Berklee College of Music</div>
           <p>В свои 36 совмещает работу в студии звукозаписи и наставничество: читает лекции по музыкальному искусству в учебных заведениях и на профессиональных площадках — в Туле, Хакасии, Санкт-Петербурге. Дополнительно обучался в Berklee College of Music. Отмечен благодарностью главы района Капотня.</p>
+          <a href="https://sambruev.ru" target="_blank" rel="noopener" class="mcard-link" aria-label="Личный сайт Семёна Бруева, sambruev.ru (откроется в новой вкладке)"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M2 12h20"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>sambruev.ru</a>
         </div>
       </div>
     </div>
