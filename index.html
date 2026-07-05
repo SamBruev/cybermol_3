@@ -339,6 +339,13 @@
     object-fit:cover; transition:transform .6s var(--ease); }
   .mcard-main .photo img{ object-position:center 12%; }
   .mcard-sub .photo img{ object-position:44% 20%; }
+  .mcard.is-photoclick{ cursor:pointer; }
+  .photo-hint{ position:absolute; left:12px; bottom:12px; z-index:3; display:inline-flex; align-items:center; gap:6px;
+    padding:7px 12px; border-radius:999px; background:rgba(15,16,20,.60); -webkit-backdrop-filter:blur(6px); backdrop-filter:blur(6px);
+    color:#fff; font-size:12px; font-weight:700; letter-spacing:.01em; box-shadow:0 6px 18px rgba(0,0,0,.25);
+    opacity:.95; transition:opacity .25s ease, transform .25s ease, background .25s ease; }
+  .mcard.is-photoclick:hover .photo-hint{ background:var(--red); opacity:1; transform:translateY(-2px); }
+  .photo-hint svg{ flex:none; }
   .mcard-main:hover .photo img,.mcard-sub:hover .photo img{ transform:scale(1.03); }
   .mcard-main .info{ padding:30px 34px; align-self:center; }
   .mcard-sub .info{ padding:26px 28px; align-self:center; }
@@ -760,8 +767,8 @@
           <p>Основатель и руководитель «Кибермола». Подготовил 3 кандидатов в мастера спорта и 31 спортсмена-перворазрядника. Воспитывает в ребятах характер, дисциплину и волю к победе.</p>
         </div>
       </div>
-      <div class="mcard mcard-sub reveal">
-        <div class="photo" data-gal="bruev" title="Открыть фото"><img src="assets/mentor-bruev-studio.jpg" alt="Бруев Семён Сергеевич в студии звукозаписи" loading="lazy" /></div>
+      <div class="mcard mcard-sub reveal is-photoclick" data-gal="bruev" title="Открыть фото с лекций">
+        <div class="photo"><img src="assets/mentor-bruev-studio.jpg" alt="Бруев Семён Сергеевич в студии звукозаписи" loading="lazy" /><span class="photo-hint"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg>Фото с лекций</span></div>
         <div class="info">
           <span class="badge">Партнёр · наставник</span>
           <h3 style="font-size:19px">Бруев Семён Сергеевич</h3>
@@ -1028,7 +1035,7 @@ var REDUCE = window.matchMedia && matchMedia('(prefers-reduced-motion:reduce)').
   var GAL = {
     awards: AW,
     fomin:  ['assets/mentor-fomin.jpg'],
-    bruev:  ['assets/mentor-bruev-studio.jpg','assets/mentor-bruev-full.jpg','assets/avatar-bruev.jpg']
+    bruev:  ['assets/mentor-bruev-lecture.jpg','assets/mentor-bruev-studio.jpg','assets/mentor-bruev-full.jpg','assets/avatar-bruev.jpg']
   };
   var list = AW, cur = 0;
   function show(i){
@@ -1046,7 +1053,8 @@ var REDUCE = window.matchMedia && matchMedia('(prefers-reduced-motion:reduce)').
     openGal(GAL.awards, parseInt(f.getAttribute('data-i'),10) || 0);
   });
   document.querySelectorAll('[data-gal]').forEach(function(el){
-    el.addEventListener('click', function(){
+    el.addEventListener('click', function(e){
+      if(e.target.closest('a')) return;
       var l = GAL[el.getAttribute('data-gal')];
       if(l && l.length) openGal(l, 0);
     });
