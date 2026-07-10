@@ -65,7 +65,7 @@
   "areaServed": { "@type": "City", "name": "Москва" },
   "contactPoint": {
     "@type": "ContactPoint",
-    "telephone": "+7-926-412-90-10",
+    "telephone": "+7 926 412-90-10",
     "email": "frmcybermol@yandex.ru",
     "contactType": "customer support",
     "availableLanguage": "Russian"
@@ -100,7 +100,7 @@
     --ease:     cubic-bezier(.2,.7,.2,1);
   }
   *{ box-sizing:border-box; margin:0; padding:0; }
-  html{ scroll-behavior:smooth; }
+  html{ scroll-behavior:smooth; scrollbar-gutter:stable; }
   body{
     font-family:var(--font-b); background:var(--bg); color:var(--ink);
     line-height:1.62; overflow-x:clip;
@@ -147,6 +147,8 @@
     padding:12px 20px; border-radius:12px; font-weight:700; font-size:14px; box-shadow:var(--shadow);
     transition:top .22s var(--ease); }
   .skip-link:focus{ top:14px; outline:2px solid #fff; outline-offset:2px; }
+  #main-content:focus{ outline:none; }
+  body:has(#intro) .skip-link{ display:none; }
   .to-top{ position:fixed; right:20px; bottom:20px; z-index:140; width:48px; height:48px; border-radius:50%;
     background:var(--ink); color:#fff; border:none; cursor:pointer; display:grid; place-items:center;
     box-shadow:var(--shadow); opacity:0; visibility:hidden; transform:translateY(12px) scale(.9);
@@ -156,7 +158,7 @@
   @media (max-width:560px){ .to-top{ right:14px; bottom:14px; width:44px; height:44px; } }
 
   /* ══════════════ 2. ЗАСТАВКА (мягкая, светлая) ══════════════ */
-  #intro{ position:fixed; inset:0; z-index:300; background:var(--bg); display:grid; place-items:center; cursor:pointer; }
+  #intro{ position:fixed; inset:0; z-index:500; background:var(--bg); display:grid; place-items:center; cursor:pointer; }
   #intro.gone{ animation:introOut .6s var(--ease) forwards; }
   #intro .in-wrap{ text-align:center; padding:24px; }
   #intro img{ width:min(220px,54vw); margin:0 auto; animation:introLogo 1.1s var(--ease) both; }
@@ -569,6 +571,7 @@
     .support-panel::after{ right:-30%; bottom:-10%; }
     .aw-fig{ width:136px; }
     .lb-prev,.lb-next{ display:none; }
+    .toast{ bottom:76px; }
   }
 </style>
 </head>
@@ -787,7 +790,7 @@
     </div>
     <div class="team-grid">
       <div class="mcard mcard-main reveal">
-        <div class="photo" data-gal="fomin" title="Открыть фото"><img src="assets/mentor-fomin.jpg" alt="Фомин Алексей Анатольевич — директор движения «Кибермол»" loading="lazy" /></div>
+        <div class="photo" data-gal="fomin" aria-label="Открыть фото — Фомин Алексей Анатольевич"><img src="assets/mentor-fomin.jpg" alt="Фомин Алексей Анатольевич — директор движения «Кибермол»" loading="lazy" /></div>
         <div class="info">
           <span class="badge">Директор движения</span>
           <h3>Фомин Алексей Анатольевич</h3>
@@ -795,8 +798,8 @@
           <p>Основатель и руководитель «Кибермола». Подготовил 3 кандидатов в мастера спорта и 31 спортсмена-перворазрядника. Воспитывает в ребятах характер, дисциплину и волю к победе.</p>
         </div>
       </div>
-      <div class="mcard mcard-sub reveal is-photoclick" title="Открыть фото с лекций">
-        <div class="photo" data-gal="bruev" title="Открыть фото с лекций"><img src="assets/mentor-bruev-studio.jpg" alt="Бруев Семён Сергеевич в студии звукозаписи" loading="lazy" /><span class="photo-hint"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg>Фото с лекций</span></div>
+      <div class="mcard mcard-sub reveal is-photoclick">
+        <div class="photo" data-gal="bruev" aria-label="Открыть фото с лекций — Бруев Семён Сергеевич"><img src="assets/mentor-bruev-studio.jpg" alt="Бруев Семён Сергеевич в студии звукозаписи" loading="lazy" /><span class="photo-hint"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg>Фото с лекций</span></div>
         <div class="info">
           <span class="badge">Партнёр · наставник</span>
           <h3 style="font-size:19px">Бруев Семён Сергеевич</h3>
@@ -949,7 +952,7 @@
 </footer>
 
 <button class="to-top" id="toTop" type="button" aria-label="Наверх, к началу страницы"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 19V5M5 12l7-7 7 7"/></svg></button>
-<div class="toast" id="toast" role="status" aria-live="polite"></div>
+<div class="toast" id="toast" role="status"></div>
 
 <!-- ═══ ЛАЙТБОКС НАГРАД ═══ -->
 <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Просмотр награды">
@@ -1090,7 +1093,7 @@ var REDUCE = window.matchMedia && matchMedia('(prefers-reduced-motion:reduce)').
   document.querySelectorAll('[data-gal]').forEach(function(el){
     if(!el.hasAttribute('tabindex')) el.setAttribute('tabindex','0');
     if(!el.hasAttribute('role')) el.setAttribute('role','button');
-    if(!el.getAttribute('aria-label')) el.setAttribute('aria-label', el.getAttribute('title') || 'Открыть фото');
+    el.setAttribute('aria-label', el.getAttribute('aria-label') || el.getAttribute('title') || 'Открыть фото');
     function fire(){ var l = GAL[el.getAttribute('data-gal')]; if(l && l.length) openGal(l, 0); }
     el.addEventListener('click', function(e){ if(e.target.closest('a')) return; fire(); });
     el.addEventListener('keydown', function(e){ if(e.key === 'Enter' || e.key === ' '){ e.preventDefault(); fire(); } });
@@ -1098,7 +1101,7 @@ var REDUCE = window.matchMedia && matchMedia('(prefers-reduced-motion:reduce)').
   document.querySelectorAll('.is-photoclick').forEach(function(card){
     card.addEventListener('click', function(e){
       if(e.target.closest('a') || e.target.closest('[data-gal]')) return;
-      var t = card.querySelector('[data-gal]'); if(t) t.click();
+      var t = card.querySelector('[data-gal]'); if(t){ if(t.focus) t.focus(); t.click(); }
     });
   });
   function close(){ lb.classList.remove('open'); img.src = ''; document.body.style.overflow = ''; if(lastFocus && lastFocus.focus){ lastFocus.focus(); } lastFocus = null; }
@@ -1273,17 +1276,11 @@ document.getElementById('joinForm').addEventListener('submit', function(e){
 
 /* ── Документы: открыть файл или показать уведомление ── */
 (function(){
-  var toast = document.getElementById('toast'), tt;
-  function show(m){
-    if(!toast) return;
-    toast.textContent = m; toast.classList.add('show');
-    clearTimeout(tt); tt = setTimeout(function(){ toast.classList.remove('show'); }, 2600);
-  }
   document.querySelectorAll('.doc').forEach(function(a){
     a.addEventListener('click', function(e){
       e.preventDefault();
       var f = a.getAttribute('data-file');
-      if(f){ window.open(f, '_blank', 'noopener'); } else { show('Документ скоро будет доступен'); }
+      if(f){ window.open(f, '_blank', 'noopener'); } else { cmToast('Документ скоро будет доступен'); }
     });
   });
 })();
@@ -1292,9 +1289,19 @@ document.getElementById('joinForm').addEventListener('submit', function(e){
 (function(){
   var b = document.getElementById('toTop'); if(!b) return;
   var vis = false;
-  function upd(){ var show = (window.pageYOffset || 0) > 640; if(show !== vis){ vis = show; b.classList.toggle('show', show); } }
+  function upd(){
+    var show = (window.pageYOffset || 0) > 640;
+    if(show !== vis){
+      vis = show;
+      if(!show && document.activeElement === b){ var m = document.getElementById('main-content'); if(m && m.focus){ m.focus({ preventScroll:true }); } }
+      b.classList.toggle('show', show);
+    }
+  }
   window.addEventListener('scroll', upd, {passive:true}); upd();
-  b.addEventListener('click', function(){ window.scrollTo({ top:0, behavior: REDUCE ? 'auto' : 'smooth' }); });
+  b.addEventListener('click', function(){
+    window.scrollTo({ top:0, behavior: REDUCE ? 'auto' : 'smooth' });
+    var m = document.getElementById('main-content'); if(m && m.focus){ m.focus({ preventScroll:true }); }
+  });
 })();
 </script>
 </body>
