@@ -18,6 +18,12 @@
 <meta property="og:url" content="https://cybermol.ru/" />
 <meta property="og:image" content="https://cybermol.ru/assets/event-team.jpg" />
 <meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="Кибермол — здоровая молодёжь, сильная Россия" />
+<meta name="twitter:description" content="Молодёжное движение из Москвы: бокс, волонтёрство, патриотические проекты и музыка. Присоединяйтесь или поддержите." />
+<meta name="twitter:image" content="https://cybermol.ru/assets/event-team.jpg" />
+<meta property="og:locale" content="ru_RU" />
+<meta property="og:image:alt" content="Участники движения «Кибермол» с наградами после турнира" />
+<meta name="author" content="АНО ФРМ «Кибермол»" />
 
 <!--
   ┌────────────────────────────────────────────────────────────────────────┐
@@ -55,7 +61,16 @@
     "addressCountry": "RU",
     "addressLocality": "Москва",
     "streetAddress": "Капотня, 5-й квартал, д. 26"
-  }
+  },
+  "areaServed": { "@type": "City", "name": "Москва" },
+  "contactPoint": {
+    "@type": "ContactPoint",
+    "telephone": "+7-926-412-90-10",
+    "email": "frmcybermol@yandex.ru",
+    "contactType": "customer support",
+    "availableLanguage": "Russian"
+  },
+  "knowsAbout": ["молодёжный спорт","бокс","патриотическое воспитание","волонтёрство","звукорежиссура"]
 }
 </script>
 
@@ -72,7 +87,7 @@
     --panel:    #FFFFFF;   /* карточки */
     --ink:      #16171B;   /* основной текст */
     --mut:      #5D6167;
-    --faint:    #989CA4;
+    --faint:    #6F737B;
     --line:     rgba(22,23,27,.08);
     --line-2:   rgba(22,23,27,.15);
     --shadow-sm:0 1px 2px rgba(22,23,27,.05), 0 4px 14px rgba(22,23,27,.04);
@@ -90,18 +105,19 @@
     font-family:var(--font-b); background:var(--bg); color:var(--ink);
     line-height:1.62; overflow-x:clip;
     -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility;
+    accent-color:var(--red);
   }
   ::selection{ background:var(--red); color:#fff; }
   a{ color:inherit; text-decoration:none; }
-  img{ display:block; max-width:100%; }
+  img{ display:block; max-width:100%; height:auto; }
   .wrap{ max-width:var(--maxw); margin:0 auto; padding:0 28px; }
   section{ padding:110px 0; position:relative; }
   section[id]{ scroll-margin-top:86px; }
 
-  h1,h2,h3{ font-family:var(--font-d); line-height:1.12; letter-spacing:.005em; font-weight:600; }
+  h1,h2,h3{ font-family:var(--font-d); line-height:1.12; letter-spacing:.005em; font-weight:600; text-wrap:balance; }
   h2{ font-size:clamp(30px,4.2vw,48px); }
   h3{ font-size:21px; }
-  p{ color:var(--mut); }
+  p{ color:var(--mut); text-wrap:pretty; }
   .lead{ font-size:clamp(16px,1.5vw,18.5px); max-width:58ch; }
 
   .eyebrow{ display:flex; align-items:center; gap:12px; font-size:12px; font-weight:700;
@@ -127,6 +143,17 @@
   .btn-ink:hover{ background:#000; transform:translateY(-2px); box-shadow:var(--shadow); }
 
   :focus-visible{ outline:2px solid var(--red); outline-offset:3px; border-radius:6px; }
+  .skip-link{ position:fixed; left:14px; top:-70px; z-index:400; background:var(--ink); color:#fff;
+    padding:12px 20px; border-radius:12px; font-weight:700; font-size:14px; box-shadow:var(--shadow);
+    transition:top .22s var(--ease); }
+  .skip-link:focus{ top:14px; outline:2px solid #fff; outline-offset:2px; }
+  .to-top{ position:fixed; right:20px; bottom:20px; z-index:140; width:48px; height:48px; border-radius:50%;
+    background:var(--ink); color:#fff; border:none; cursor:pointer; display:grid; place-items:center;
+    box-shadow:var(--shadow); opacity:0; visibility:hidden; transform:translateY(12px) scale(.9);
+    transition:opacity .3s ease, transform .3s var(--ease), visibility .3s, background .2s; }
+  .to-top.show{ opacity:1; visibility:visible; transform:none; }
+  .to-top:hover{ background:#000; transform:translateY(-2px); }
+  @media (max-width:560px){ .to-top{ right:14px; bottom:14px; width:44px; height:44px; } }
 
   /* ══════════════ 2. ЗАСТАВКА (мягкая, светлая) ══════════════ */
   #intro{ position:fixed; inset:0; z-index:300; background:var(--bg); display:grid; place-items:center; cursor:pointer; }
@@ -548,6 +575,7 @@
 <body>
 
 <div class="scrollbar" id="scrollbar"></div>
+<a class="skip-link" href="#main-content">Перейти к содержимому</a>
 
 <!-- ═══ ЗАСТАВКА (показывается один раз за визит) ═══ -->
 <div id="intro" role="button" aria-label="Пропустить заставку">
@@ -588,7 +616,7 @@
 </header>
 <span id="top"></span>
 
-<main>
+<main id="main-content" tabindex="-1">
 <!-- ═══ HERO ═══ -->
 <section class="hero" aria-label="Главный экран">
   <div class="wrap hero-grid">
@@ -603,7 +631,7 @@
       <p class="hero-note" data-in="5"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l8 4v5c0 5-3.5 8-8 9-4.5-1-8-4-8-9V7z"/></svg>Автономная некоммерческая организация · участие для ребят бесплатное</p>
     </div>
     <div class="hero-photo" data-in="6">
-      <div class="ph"><img src="assets/event-team.jpg" alt="Участники движения «Кибермол» с медалями после турнира" fetchpriority="high" /></div>
+      <div class="ph"><img src="assets/event-team.jpg" alt="Участники движения «Кибермол» с медалями после турнира" width="1100" height="935" fetchpriority="high" decoding="async" /></div>
       <div class="chip chip-1"><div class="cnum"><b>19+</b></div><div class="clbl">наград и благодарностей</div></div>
       <div class="chip chip-2"><div class="cnum">34</div><div class="clbl">спортсмена-разрядника</div></div>
     </div>
@@ -767,8 +795,8 @@
           <p>Основатель и руководитель «Кибермола». Подготовил 3 кандидатов в мастера спорта и 31 спортсмена-перворазрядника. Воспитывает в ребятах характер, дисциплину и волю к победе.</p>
         </div>
       </div>
-      <div class="mcard mcard-sub reveal is-photoclick" data-gal="bruev" title="Открыть фото с лекций">
-        <div class="photo"><img src="assets/mentor-bruev-studio.jpg" alt="Бруев Семён Сергеевич в студии звукозаписи" loading="lazy" /><span class="photo-hint"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg>Фото с лекций</span></div>
+      <div class="mcard mcard-sub reveal is-photoclick" title="Открыть фото с лекций">
+        <div class="photo" data-gal="bruev" title="Открыть фото с лекций"><img src="assets/mentor-bruev-studio.jpg" alt="Бруев Семён Сергеевич в студии звукозаписи" loading="lazy" /><span class="photo-hint"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg>Фото с лекций</span></div>
         <div class="info">
           <span class="badge">Партнёр · наставник</span>
           <h3 style="font-size:19px">Бруев Семён Сергеевич</h3>
@@ -920,7 +948,8 @@
   </div>
 </footer>
 
-<div class="toast" id="toast" role="status"></div>
+<button class="to-top" id="toTop" type="button" aria-label="Наверх, к началу страницы"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 19V5M5 12l7-7 7 7"/></svg></button>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
 
 <!-- ═══ ЛАЙТБОКС НАГРАД ═══ -->
 <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Просмотр награды">
@@ -941,6 +970,11 @@ var MAX_URL      = "";     // TODO: ссылка на сообщество в MA
 var DONATE_URL   = "";     // TODO: ссылка для пожертвований
 
 document.getElementById('year').textContent = new Date().getFullYear();
+function cmToast(m){
+  var t = document.getElementById('toast'); if(!t) return;
+  t.textContent = m; t.classList.add('show');
+  clearTimeout(cmToast._t); cmToast._t = setTimeout(function(){ t.classList.remove('show'); }, 2600);
+}
 var REDUCE = window.matchMedia && matchMedia('(prefers-reduced-motion:reduce)').matches;
 
 /* ── Заставка: один раз за визит, клик пропускает ── */
@@ -1028,6 +1062,7 @@ var REDUCE = window.matchMedia && matchMedia('(prefers-reduced-motion:reduce)').
   var lb = document.getElementById('lightbox'); if(!lb) return;
   var img = lb.querySelector('img'), count = document.getElementById('lbCount');
   var prev = lb.querySelector('.lb-prev'), next = lb.querySelector('.lb-next');
+  var closeBtn = lb.querySelector('.lb-close'), lastFocus = null;
   var AW = [1,2,3,4,5,6,7,8,9,10,11,12,13,15,16,17,18,19].map(function(n){
     return 'assets/award-' + (n<10?'0':'') + n + '.jpg';
   });
@@ -1047,28 +1082,43 @@ var REDUCE = window.matchMedia && matchMedia('(prefers-reduced-motion:reduce)').
     if(next) next.style.display = many ? '' : 'none';
     count.style.display = many ? '' : 'none';
   }
-  function openGal(l, i){ list = l; show(i || 0); lb.classList.add('open'); }
+  function openGal(l, i){ lastFocus = document.activeElement; list = l; show(i || 0); lb.classList.add('open'); document.body.style.overflow = 'hidden'; if(closeBtn) closeBtn.focus(); }
   document.getElementById('gallery').addEventListener('click', function(e){
     var f = e.target.closest('.aw-fig'); if(!f) return;
     openGal(GAL.awards, parseInt(f.getAttribute('data-i'),10) || 0);
   });
   document.querySelectorAll('[data-gal]').forEach(function(el){
-    el.addEventListener('click', function(e){
-      if(e.target.closest('a')) return;
-      var l = GAL[el.getAttribute('data-gal')];
-      if(l && l.length) openGal(l, 0);
+    if(!el.hasAttribute('tabindex')) el.setAttribute('tabindex','0');
+    if(!el.hasAttribute('role')) el.setAttribute('role','button');
+    if(!el.getAttribute('aria-label')) el.setAttribute('aria-label', el.getAttribute('title') || 'Открыть фото');
+    function fire(){ var l = GAL[el.getAttribute('data-gal')]; if(l && l.length) openGal(l, 0); }
+    el.addEventListener('click', function(e){ if(e.target.closest('a')) return; fire(); });
+    el.addEventListener('keydown', function(e){ if(e.key === 'Enter' || e.key === ' '){ e.preventDefault(); fire(); } });
+  });
+  document.querySelectorAll('.is-photoclick').forEach(function(card){
+    card.addEventListener('click', function(e){
+      if(e.target.closest('a') || e.target.closest('[data-gal]')) return;
+      var t = card.querySelector('[data-gal]'); if(t) t.click();
     });
   });
-  function close(){ lb.classList.remove('open'); img.src = ''; }
+  function close(){ lb.classList.remove('open'); img.src = ''; document.body.style.overflow = ''; if(lastFocus && lastFocus.focus){ lastFocus.focus(); } lastFocus = null; }
   lb.addEventListener('click', function(e){ if(e.target === lb || e.target === img) close(); });
   lb.querySelector('.lb-close').addEventListener('click', close);
   prev.addEventListener('click', function(){ show(cur-1); });
   next.addEventListener('click', function(){ show(cur+1); });
   document.addEventListener('keydown', function(e){
     if(!lb.classList.contains('open')) return;
-    if(e.key === 'Escape') close();
-    if(e.key === 'ArrowLeft') show(cur-1);
-    if(e.key === 'ArrowRight') show(cur+1);
+    if(e.key === 'Escape'){ close(); return; }
+    if(e.key === 'ArrowLeft'){ show(cur-1); return; }
+    if(e.key === 'ArrowRight'){ show(cur+1); return; }
+    if(e.key === 'Tab'){
+      var f = Array.prototype.slice.call(lb.querySelectorAll('.lb-btn')).filter(function(b){ return b.offsetParent !== null; });
+      if(!f.length) return;
+      var first = f[0], last = f[f.length-1];
+      if(e.shiftKey && document.activeElement === first){ e.preventDefault(); last.focus(); }
+      else if(!e.shiftKey && document.activeElement === last){ e.preventDefault(); first.focus(); }
+      else if(f.indexOf(document.activeElement) === -1){ e.preventDefault(); first.focus(); }
+    }
   });
 })();
 
@@ -1088,6 +1138,7 @@ var REDUCE = window.matchMedia && matchMedia('(prefers-reduced-motion:reduce)').
 /* ── Заявка → почтовый клиент (временно, до подключения формы) ── */
 document.getElementById('joinForm').addEventListener('submit', function(e){
   e.preventDefault(); var f = e.target;
+  cmToast('Открываем почтовый клиент с вашей заявкой…');
   var s = encodeURIComponent('Заявка на участие — Кибермол');
   var b = encodeURIComponent('Имя: ' + f.name.value + '\nТелефон: ' + f.phone.value + '\nИнтерес: ' + f.interest.value + '\nСообщение: ' + f.message.value);
   window.location.href = 'mailto:frmcybermol@yandex.ru?subject=' + s + '&body=' + b;
@@ -1235,6 +1286,15 @@ document.getElementById('joinForm').addEventListener('submit', function(e){
       if(f){ window.open(f, '_blank', 'noopener'); } else { show('Документ скоро будет доступен'); }
     });
   });
+})();
+
+/* \u2500\u2500 \u041a\u043d\u043e\u043f\u043a\u0430 \u00ab\u043d\u0430\u0432\u0435\u0440\u0445\u00bb \u2500\u2500 */
+(function(){
+  var b = document.getElementById('toTop'); if(!b) return;
+  var vis = false;
+  function upd(){ var show = (window.pageYOffset || 0) > 640; if(show !== vis){ vis = show; b.classList.toggle('show', show); } }
+  window.addEventListener('scroll', upd, {passive:true}); upd();
+  b.addEventListener('click', function(){ window.scrollTo({ top:0, behavior: REDUCE ? 'auto' : 'smooth' }); });
 })();
 </script>
 </body>
