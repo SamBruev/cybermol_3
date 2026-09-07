@@ -72,7 +72,7 @@
       }
     }
   });
-  matchMedia('(max-width:820px)').addEventListener('change', e => {
+  matchMedia('(max-width:680px)').addEventListener('change', e => {
     if (!e.matches && !menu.hidden) setMenu(false, false, null, true);
   });
 

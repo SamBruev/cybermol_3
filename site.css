@@ -311,4 +311,20 @@ html{scroll-padding-top:68px}
 .nav-action{display:none}.menu-toggle{margin-left:auto}.hero h1{font-size:40px}
 .about-facts dt{font-size:24px}.about-facts dd{font-size:10px}.mentor-photo img{height:310px}
 }
+/* Keep navigation visible on medium screens; center the compact brand. */
+@media(min-width:681px) and (max-width:1100px){
+html{scroll-padding-top:126px}
+.header .nav{width:min(780px,calc(100% - 40px));min-height:126px;display:grid;grid-template-columns:max-content max-content;justify-content:center;gap:0 24px;padding:14px 0 8px}
+.header .brand{grid-column:1 / -1;justify-self:center;margin-bottom:8px}
+.header .nav-links{display:flex;justify-content:center;gap:18px;margin:0}
+.header .nav-links a{font-size:12px;white-space:nowrap}
+.header .nav-action{margin:0;justify-self:end;white-space:nowrap;padding:12px 16px}
+.header .menu-toggle,.mobile-nav:not([hidden]){display:none}
+}
+@media(max-width:680px){
+.header .nav{display:grid;grid-template-columns:46px minmax(0,1fr) 46px;gap:10px}
+.header .brand{grid-column:2;justify-self:center;min-width:0}
+.header .nav-action,.header .nav-links{display:none}
+.header .menu-toggle{grid-column:3;justify-self:end;margin:0}
+}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before,*::after{transition:none!important;animation:none!important}}
