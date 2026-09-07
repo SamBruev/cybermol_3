@@ -12,30 +12,55 @@
   const dialog = $('#lightbox');
   const background = [$('#main'), $('.footer'), $('#toTop')];
   const lockPage = () => document.body.classList.toggle('locked', !menu.hidden || dialog.open);
+  let menuOpen = false, menuGeneration = 0, closingMenu = null;
   toggle.hidden = false;
-  function setMenu(open, returnFocus = false) {
-    menu.hidden = !open;
+  function setMenu(open, returnFocus = false, afterClose = null, instant = false) {
+    const generation = ++menuGeneration;
+    closingMenu?.cancel(); closingMenu = null;
+    menuOpen = open;
     toggle.setAttribute('aria-expanded', String(open));
     toggle.setAttribute('aria-label', open ? 'Закрыть меню' : 'Открыть меню');
-    background.forEach(el => { el.inert = open; });
-    $('.nav-action').inert = open;
-    $('.header .brand').inert = open;
-    lockPage();
-    if (open) menu.querySelector('a').focus();
-    else if (returnFocus) toggle.focus();
+    if (open) {
+      menu.hidden = false; menu.inert = false;
+      background.forEach(el => { el.inert = true; });
+      $('.nav-action').inert = true;
+      $('.header .brand').inert = true;
+      lockPage();
+      window.CybermolMotion?.openMenu(menu);
+      menu.querySelector('a').focus({preventScroll:true});
+      return;
+    }
+    menu.inert = true;
+    const finish = () => {
+      if (generation !== menuGeneration) return;
+      menu.hidden = true; closingMenu = null;
+      background.forEach(el => { el.inert = false; });
+      $('.nav-action').inert = false;
+      $('.header .brand').inert = false;
+      lockPage();
+      if (returnFocus) toggle.focus({preventScroll:true});
+      afterClose?.();
+    };
+    closingMenu = !instant && !menu.hidden ? window.CybermolMotion?.closeMenu(menu) : null;
+    if (closingMenu) closingMenu.finished.then(finish, finish);
+    else finish();
   }
-  toggle.addEventListener('click', () => setMenu(menu.hidden, !menu.hidden));
+  toggle.addEventListener('click', () => setMenu(!menuOpen, menuOpen));
   menu.addEventListener('click', event => {
     const link = event.target.closest('a');
-    if (!link) return;
-    setMenu(false);
-    if (link.hash) {
-      const target = document.getElementById(link.hash.slice(1));
-      if (target) { target.tabIndex = -1; target.focus({preventScroll:true}); }
-    }
+    if (!link || !menuOpen) return;
+    const target = link.hash && document.getElementById(link.hash.slice(1));
+    if (target) {
+      event.preventDefault();
+      setMenu(false, false, () => {
+        history.pushState(null, '', link.hash);
+        target.tabIndex = -1; target.focus({preventScroll:true});
+        target.scrollIntoView({behavior:reduced() ? 'instant' : 'smooth'});
+      });
+    } else setMenu(false, true);
   });
   document.addEventListener('keydown', event => {
-    if (menu.hidden) return;
+    if (!menuOpen) return;
     if (event.key === 'Escape') { event.preventDefault(); setMenu(false, true); }
     if (event.key === 'Tab') {
       const focusable = [toggle, ...menu.querySelectorAll('a[href]')];
@@ -48,7 +73,7 @@
     }
   });
   matchMedia('(max-width:820px)').addEventListener('change', e => {
-    if (!e.matches && !menu.hidden) setMenu(false);
+    if (!e.matches && !menu.hidden) setMenu(false, false, null, true);
   });
 
   const photos = {
@@ -61,7 +86,7 @@
       {src:'assets/avatar-bruev.jpg',alt:'Семён Бруев: музыкальный продюсер и звукорежиссёр'}
     ]
   };
-  let activePhotos = [], currentPhoto = 0, opener = null;
+  let activePhotos = [], currentPhoto = 0, opener = null, photoSessionOpen = false;
   const photo = $('#lightboxImage');
   const label = $('#lightboxLabel');
   function showPhoto(index) {
@@ -79,16 +104,33 @@
     opener = button;
     activePhotos = photos[button.dataset.gallery];
     showPhoto(Number(button.dataset.index) || 0);
-    dialog.showModal();
+    dialog.showModal(); photoSessionOpen = true;
     lockPage();
     $('.lb-close').focus();
   }));
-  $('.lb-close').addEventListener('click', () => dialog.close());
-  dialog.addEventListener('click', e => { if (e.target === $('.lightbox-inner')) dialog.close(); });
-  dialog.addEventListener('close', () => {
+  let closingPhoto = false;
+  function closePhoto() {
+    if (closingPhoto || !dialog.open) return;
+    closingPhoto = true;
+    const animation = window.CybermolMotion?.closeDialog(dialog);
+    const finish = () => {
+      if (dialog.open) dialog.close();
+      finishPhotoClose();
+    };
+    if (animation) animation.finished.then(finish, finish);
+    else finish();
+  }
+  $('.lb-close').addEventListener('click', closePhoto);
+  dialog.addEventListener('cancel', event => { event.preventDefault(); closePhoto(); });
+  dialog.addEventListener('click', e => { if (e.target === $('.lightbox-inner')) closePhoto(); });
+  function finishPhotoClose() {
+    if (!photoSessionOpen || dialog.open) return;
+    photoSessionOpen = false;
+    closingPhoto = false; dialog.classList.remove('is-closing');
     lockPage(); photo.removeAttribute('src');
     if (opener) opener.focus({preventScroll:true});
-  });
+  }
+  dialog.addEventListener('close', finishPhotoClose);
   $('#lbPrev').addEventListener('click', () => showPhoto(currentPhoto - 1));
   $('#lbNext').addEventListener('click', () => showPhoto(currentPhoto + 1));
   dialog.addEventListener('keydown', e => {
@@ -130,6 +172,7 @@
   pauseButton.className = 'award-motion-toggle';
   pauseButton.setAttribute('aria-controls', 'awardTrack');
   $('.gallery-controls').prepend(pauseButton);
+  let userPaused = false;
   let autoEnabled = !motionPreference.matches;
   let inView = false, hovered = false, focused = false, direction = 1;
   let animationFrame = 0, lastFrame = 0, position = track.scrollLeft;
@@ -162,21 +205,21 @@
     if (canTravel()) { position = track.scrollLeft; animationFrame = requestAnimationFrame(travel); }
   }
   pauseButton.addEventListener('click', () => {
-    autoEnabled = !autoEnabled; renderMotionButton(); syncTravel();
+    autoEnabled = !autoEnabled; userPaused = !autoEnabled; renderMotionButton(); syncTravel();
   });
   function manualTravel() {
-    autoEnabled = false; renderMotionButton(); syncTravel();
+    userPaused = true; autoEnabled = false; renderMotionButton(); syncTravel();
   }
   track.addEventListener('pointerdown', manualTravel, {passive:true});
   track.addEventListener('wheel', manualTravel, {passive:true});
   galleryButtons.forEach(button => button.addEventListener('click', manualTravel));
-  awardsSection.addEventListener('pointerenter', e => {
+  track.addEventListener('pointerenter', e => {
     if (e.pointerType === 'mouse') { hovered = true; syncTravel(); }
   });
-  awardsSection.addEventListener('pointerleave', () => { hovered = false; syncTravel(); });
-  awardsSection.addEventListener('focusin', () => { focused = true; syncTravel(); });
+  track.addEventListener('pointerleave', () => { hovered = false; syncTravel(); });
+  awardsSection.addEventListener('focusin', event => { focused = track.contains(event.target); syncTravel(); });
   awardsSection.addEventListener('focusout', () => {
-    queueMicrotask(() => { focused = awardsSection.contains(document.activeElement); syncTravel(); });
+    queueMicrotask(() => { focused = track.contains(document.activeElement); syncTravel(); });
   });
   if ('IntersectionObserver' in window) {
     new IntersectionObserver(entries => {
@@ -187,7 +230,7 @@
   new MutationObserver(syncTravel).observe(menu, {attributes:true,attributeFilter:['hidden']});
   document.addEventListener('visibilitychange', syncTravel);
   motionPreference.addEventListener('change', () => {
-    autoEnabled = !motionPreference.matches; renderMotionButton(); syncTravel();
+    autoEnabled = !userPaused && !motionPreference.matches; renderMotionButton(); syncTravel();
   });
   renderMotionButton();
 
