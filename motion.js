@@ -46,13 +46,13 @@
   }
   function revealHeading(heading, hero = false) {
     if (preference.matches || document.hidden) return;
-    headingWords(heading).forEach((word, index) => {
+    headingWords(heading).forEach(word => {
       play(word, [
         {transform:'translateY(108%)', opacity:0},
         {transform:'translateY(0)', opacity:1}
       ], {
         duration: smallScreen.matches ? 620 : (hero ? 1050 : 850),
-        delay: Math.min(index * (hero ? 70 : 45), hero ? 280 : 180)
+        delay: hero && word.closest('.hero-accent') ? 120 : 0
       });
     });
   }
@@ -63,11 +63,12 @@
     ], {delay});
   }
   function revealPhoto(frame) {
-    play(frame, [
+    const imageWindow = frame.querySelector('.motion-photo-window') || frame;
+    play(imageWindow, [
       {clipPath:'inset(5% 0 5% 0 round 5px)', opacity:.55},
       {clipPath:'inset(0% 0 0% 0 round 5px)', opacity:1}
     ], {duration:smallScreen.matches ? 650 : 1100});
-    play(frame.querySelector('img'), [
+    play(imageWindow.querySelector('img'), [
       {transform:'scale(1.045)'}, {transform:'scale(1)'}
     ], {duration:smallScreen.matches ? 800 : 1400});
   }

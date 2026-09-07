@@ -171,7 +171,7 @@
   pauseButton.type = 'button';
   pauseButton.className = 'award-motion-toggle';
   pauseButton.setAttribute('aria-controls', 'awardTrack');
-  $('.gallery-controls').prepend(pauseButton);
+  $('.gallery-controls').insertBefore(pauseButton, galleryButtons[1]);
   let userPaused = false;
   let autoEnabled = !motionPreference.matches;
   let inView = false, hovered = false, focused = false, direction = 1;
