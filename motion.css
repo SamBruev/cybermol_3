@@ -31,7 +31,6 @@
   .direction:focus-within .direction-num{color:var(--red)}
   .mentor-photo span{transition:transform .55s cubic-bezier(.16,1,.3,1),background .3s,color .3s}
   .mentor-photo:focus-visible span{transform:rotate(90deg);background:var(--red);color:white}
-  .mentor-photo img{transition:transform .9s cubic-bezier(.16,1,.3,1)}
   .award{transition:box-shadow .45s,border-color .45s}
   .award:hover,.award:focus-visible{border-color:#b5b7ac;box-shadow:0 6px 18px #191b1b0d}
   .lightbox[open]::backdrop{animation:cybermol-backdrop .45s ease-out}
@@ -42,14 +41,13 @@
   .direction:hover .direction-icon{transform:translateY(-3px)}
   .direction:hover .direction-num{transform:translateX(3px);color:var(--red)}
   .mentor-photo:hover span{transform:rotate(90deg);background:var(--red);color:white}
-  .mentor-photo:hover img{transform:scale(1.04)}
   .partner img{transition:transform .65s cubic-bezier(.16,1,.3,1)}
   .partner:hover img{transform:translateY(-3px)}
 }
 @media(prefers-reduced-motion:reduce){
   .motion-word-mask{overflow:visible}
   .lightbox::backdrop,.header,.mobile-nav a::after{transition:none!important;animation:none!important}
-  .btn:hover,.btn:active,.mentor-photo:hover img{transform:none}
+  .btn:hover,.btn:active{transform:none}
 }
 
 .motion-photo-window{overflow:hidden;border-radius:5px}

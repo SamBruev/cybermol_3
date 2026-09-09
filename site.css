@@ -90,9 +90,9 @@
 .music-sub span::before{content:'';width:5px;height:5px;background:var(--red);border-radius:50%}
 .team-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:32px;max-width:1060px;margin-inline:auto}
 .mentor{display:flex;flex-direction:column;background:#eeefe8;border:1px solid var(--line);border-radius:6px;overflow:hidden}
-.mentor-photo{display:block;padding:0;border:0;background:#fff;width:100%;position:relative;overflow:hidden}
-.mentor-photo img{width:100%;height:410px;object-fit:cover;object-position:center top;transition:transform .4s}
-.mentor-photo:hover img{transform:scale(1.025)}
+.mentor-photo{display:block;flex:none;padding:0;border:0;background:var(--ink);width:100%;position:relative;overflow:hidden}
+.mentor-photo img{width:100%;height:auto;aspect-ratio:4/5;object-fit:contain;object-position:center}
+
 .mentor-photo span{position:absolute;bottom:14px;left:14px;width:36px;height:36px;background:rgba(255,255,255,.92);border-radius:50%;display:grid;place-items:center;font-size:22px}
 .mentor-info{padding:32px;display:flex;flex-direction:column;align-items:center;text-align:center;flex:1}
 .mentor-info .tag{font-size:11px;letter-spacing:.1em;color:var(--red);text-transform:uppercase;font-weight:700}
@@ -240,7 +240,7 @@
 .wrap{width:calc(100% - 56px)}
 .nav{gap:20px}.nav-links{gap:17px}.nav-links a{font-size:11px}
 .direction{padding:26px}.direction h3{font-size:25px}
-.mentor-photo img{height:360px}.contact-items a{font-size:21px}
+.contact-items a{font-size:21px}
 }
 @media(max-width:900px){
 .nav{display:flex;gap:14px}.nav-links{margin-left:auto;gap:14px}.nav-action{padding:12px}
@@ -261,7 +261,7 @@ html{scroll-padding-top:74px}.wrap{width:calc(100% - 40px)}.section{padding:76px
 .direction-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
 .direction{min-height:290px}.music p{font-size:16px}.music-photo img{aspect-ratio:1.8}
 .music-sub{gap:16px;flex-wrap:wrap}.team-grid{gap:24px}
-.mentor-photo img{height:320px}.mentor-info{padding:28px 22px}.mentor-info h3{font-size:29px}
+.mentor-info{padding:28px 22px}.mentor-info h3{font-size:29px}
 .mentor-info p,.mentor-info .role{font-size:14px}.awards{padding-top:0}
 .steps li{padding:25px 20px}.steps h3{font-size:22px}.steps p{font-size:14px}
 .faq{margin-top:60px}.support p{font-size:16px}
@@ -274,7 +274,7 @@ html{scroll-padding-top:74px}.wrap{width:calc(100% - 40px)}.section{padding:76px
 .audience a:last-child{border-bottom:0}.audience strong{font-size:15px}
 .direction-grid{grid-template-columns:1fr}.direction{min-height:250px;padding:28px}
 .direction h3{max-width:24ch;font-size:27px}.direction-top{margin-bottom:22px}.direction p{max-width:none}
-.team-grid{grid-template-columns:1fr;max-width:440px}.mentor-photo img{height:380px}
+.team-grid{grid-template-columns:1fr;max-width:440px}
 .mentor-info{padding:28px}.mentor-info .role{min-height:0}.mentor-info p{font-size:15px}
 .steps{grid-template-columns:1fr}.steps li{padding:28px;border-left:0;border-bottom:1px solid var(--line)}
 .partners-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}.partner{height:90px}
@@ -303,7 +303,7 @@ html{scroll-padding-top:68px}
 .section-head{gap:18px;margin-bottom:32px}.music h2{font-size:43px}.music p{font-size:15px}
 .music-grid{gap:30px}.music .btn{width:100%}.music-sub{font-size:12px;gap:14px 20px}
 .music-photo img{aspect-ratio:1.3333}.music-photo figcaption{font-size:11px}
-.mentor-photo img{height:340px}.mentor-info h3{font-size:31px}
+.mentor-info h3{font-size:31px}
 .awards{padding-top:0}.awards-heading h2{font-size:36px}.gallery-controls{gap:10px}
 .gallery-controls .icon-button{width:44px;height:44px}.award-motion-toggle{min-width:138px;min-height:44px}
 .award{flex-basis:148px}.award img{height:190px}.award-caption{font-size:11px}
@@ -316,7 +316,7 @@ html{scroll-padding-top:68px}
 }
 @media(max-width:380px){
 .nav-action{display:none}.menu-toggle{margin-left:auto}.hero h1{font-size:40px}
-.about-facts dt{font-size:24px}.about-facts dd{font-size:10px}.mentor-photo img{height:310px}
+.about-facts dt{font-size:24px}.about-facts dd{font-size:10px}
 }
 /* Keep navigation visible on medium screens; center the compact brand. */
 @media(min-width:681px) and (max-width:1100px){
