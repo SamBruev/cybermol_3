@@ -154,6 +154,7 @@
   $('.gallery-controls').hidden = false;
   const galleryButtons = $$('[data-scroll]');
   galleryButtons.forEach(button => button.addEventListener('click', () => {
+    pauseForInteraction();
     track.scrollBy({left:Number(button.dataset.scroll) * track.clientWidth * .8, behavior:reduced() ? 'instant' : 'smooth'});
   }));
   function galleryState() {
@@ -167,24 +168,15 @@
   // Automatic travel reverses at the ends without duplicating document links.
   const motionPreference = matchMedia('(prefers-reduced-motion: reduce)');
   const awardsSection = track.closest('section');
-  const pauseButton = document.createElement('button');
-  pauseButton.type = 'button';
-  pauseButton.className = 'award-motion-toggle';
-  pauseButton.setAttribute('aria-controls', 'awardTrack');
-  $('.gallery-controls').insertBefore(pauseButton, galleryButtons[1]);
-  let userPaused = false;
-  let autoEnabled = !motionPreference.matches;
-  let inView = false, hovered = false, focused = false, direction = 1;
+  let inView = !('IntersectionObserver' in window), hovered = false, direction = 1;
+  let manualPause = false, resumeTimer = 0;
+  const activePointers = new Set();
   let animationFrame = 0, lastFrame = 0, position = track.scrollLeft;
   function canTravel() {
-    return autoEnabled && inView && !hovered && !focused && !document.hidden &&
-      !dialog.open && menu.hidden && !motionPreference.matches;
-  }
-  function renderMotionButton() {
-    pauseButton.textContent = autoEnabled ? 'Пауза' : 'Автопрокрутка';
-    pauseButton.setAttribute('aria-label', autoEnabled ? 'Остановить движение грамот' : 'Включить движение грамот');
-    pauseButton.disabled = motionPreference.matches;
-    pauseButton.title = motionPreference.matches ? 'Движение отключено в настройках устройства' : '';
+    const keyboardFocus = track.contains(document.activeElement) && document.activeElement.matches(':focus-visible');
+    return !manualPause && !activePointers.size && inView && !hovered &&
+      !keyboardFocus && !document.hidden && !dialog.open && menu.hidden &&
+      !motionPreference.matches && track.scrollWidth > track.clientWidth + 1;
   }
   function travel(now) {
     animationFrame = 0;
@@ -204,23 +196,48 @@
     track.classList.toggle('auto-travel', canTravel());
     if (canTravel()) { position = track.scrollLeft; animationFrame = requestAnimationFrame(travel); }
   }
-  pauseButton.addEventListener('click', () => {
-    autoEnabled = !autoEnabled; userPaused = !autoEnabled; renderMotionButton(); syncTravel();
-  });
-  function manualTravel() {
-    userPaused = true; autoEnabled = false; renderMotionButton(); syncTravel();
+  // Autoplay starts on its own. Swipes and arrows only pause it briefly.
+  function pauseForInteraction() {
+    manualPause = true;
+    clearTimeout(resumeTimer);
+    resumeTimer = setTimeout(() => {
+      resumeTimer = 0;
+      if (activePointers.size) return;
+      manualPause = false;
+      syncTravel();
+    }, 3000);
+    syncTravel();
   }
-  track.addEventListener('pointerdown', manualTravel, {passive:true});
-  track.addEventListener('wheel', manualTravel, {passive:true});
-  galleryButtons.forEach(button => button.addEventListener('click', manualTravel));
+  track.addEventListener('pointerdown', event => {
+    activePointers.add(event.pointerId); pauseForInteraction();
+  }, {passive:true});
+  function releasePointer(event) {
+    if (activePointers.delete(event.pointerId)) pauseForInteraction();
+  }
+  window.addEventListener('pointerup', releasePointer, {passive:true});
+  window.addEventListener('pointercancel', releasePointer, {passive:true});
+  window.addEventListener('blur', () => {
+    if (activePointers.size) { activePointers.clear(); pauseForInteraction(); }
+  });
+  track.addEventListener('wheel', event => {
+    if (!event.ctrlKey && (Math.abs(event.deltaX) > Math.abs(event.deltaY) || (event.shiftKey && event.deltaY))) {
+      pauseForInteraction();
+    }
+  }, {passive:true});
+  // Wait for native scrolling and touch momentum to settle before resuming.
+  track.addEventListener('scroll', () => { if (manualPause) pauseForInteraction(); }, {passive:true});
   track.addEventListener('pointerenter', e => {
     if (e.pointerType === 'mouse') { hovered = true; syncTravel(); }
   });
   track.addEventListener('pointerleave', () => { hovered = false; syncTravel(); });
-  awardsSection.addEventListener('focusin', event => { focused = track.contains(event.target); syncTravel(); });
+  awardsSection.addEventListener('focusin', syncTravel);
   awardsSection.addEventListener('focusout', () => {
-    queueMicrotask(() => { focused = track.contains(document.activeElement); syncTravel(); });
+    queueMicrotask(syncTravel);
   });
+  // Input modality can change :focus-visible without moving focus to another link.
+  ['keydown', 'pointerdown'].forEach(type => document.addEventListener(type, () => {
+    if (track.contains(document.activeElement)) requestAnimationFrame(syncTravel);
+  }, {passive:true}));
   if ('IntersectionObserver' in window) {
     new IntersectionObserver(entries => {
       inView = entries[0].isIntersecting; syncTravel();
@@ -229,10 +246,9 @@
   new MutationObserver(syncTravel).observe(dialog, {attributes:true,attributeFilter:['open']});
   new MutationObserver(syncTravel).observe(menu, {attributes:true,attributeFilter:['hidden']});
   document.addEventListener('visibilitychange', syncTravel);
-  motionPreference.addEventListener('change', () => {
-    autoEnabled = !userPaused && !motionPreference.matches; renderMotionButton(); syncTravel();
-  });
-  renderMotionButton();
+  window.addEventListener('resize', syncTravel);
+  motionPreference.addEventListener('change', syncTravel);
+  syncTravel();
 
   $$('[data-interest]').forEach(link => link.addEventListener('click', () => {
     $('#interest').value = link.dataset.interest;
