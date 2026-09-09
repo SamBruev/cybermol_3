@@ -15,8 +15,6 @@
   let generation = 0;
   let widgetId = null;
   let readyTimer = 0;
-  let resizeTimer = 0;
-  let renderedWidth = 0;
   let started = false;
   const widgetTitle = 'Новости сообщества АНО ФРМ Кибермол во ВКонтакте';
 
@@ -72,7 +70,6 @@
     const current = ++generation;
     clearWidget();
     setState('loading');
-    renderedWidth = Math.max(120, Math.floor(frame.clientWidth));
     try {
       await loadTransport();
       if (current !== generation) return;
@@ -134,12 +131,5 @@
     observer.observe(section);
   } else render();
 
-  // VK measures "auto" once, so recreate the wall when the available width changes.
-  const checkWidth = () => {
-    if (!started || Math.abs(Math.floor(frame.clientWidth) - renderedWidth) < 2) return;
-    clearTimeout(resizeTimer);
-    resizeTimer = setTimeout(render, 240);
-  };
-  if ('ResizeObserver' in window) new ResizeObserver(checkWidth).observe(frame);
-  else window.addEventListener('resize', checkWidth, {passive:true});
+  // The iframe follows the container through CSS. Resizing must not reload the wall.
 })();
