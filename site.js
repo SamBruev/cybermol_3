@@ -78,7 +78,7 @@
 
   const photos = {
     awards: $$('.award').map(el => ({src:el.querySelector('img').getAttribute('src'), alt:el.querySelector('img').alt})),
-    fomin: [{src:'assets/mentor-fomin.jpg',alt:'Алексей Анатольевич Фомин: руководитель движения «Кибермол»'}],
+    fomin: [{src:'assets/mentor-fomin-desk.jpg',alt:'Алексей Анатольевич Фомин: руководитель движения «Кибермол»'}],
     bruev: [
       {src:'assets/mentor-bruev-full.jpg',alt:'Семён Сергеевич Бруев'},
       {src:'assets/mentor-bruev-studio.jpg',alt:'Семён Бруев в студии звукозаписи'},
